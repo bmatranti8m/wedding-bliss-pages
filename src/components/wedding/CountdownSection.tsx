@@ -6,7 +6,7 @@ const CountdownSection = () => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
   
-  const weddingDate = new Date("2025-06-15T16:00:00");
+  const weddingDate = new Date("2026-06-16T17:00:00");
   
   const [timeLeft, setTimeLeft] = useState({
     days: 0,

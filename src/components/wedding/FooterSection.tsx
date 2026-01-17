@@ -16,26 +16,26 @@ const FooterSection = () => {
           transition={{ duration: 0.8 }}
         >
           <div className="font-serif text-6xl md:text-8xl text-primary mb-8 italic">
-            E <span className="text-muted-foreground">&</span> J
+            B <span className="text-muted-foreground">&</span> C
           </div>
-          
+
           <p className="font-serif text-2xl text-foreground mb-4 italic">
             We can't wait to celebrate with you!
           </p>
-          
+
           <div className="flex items-center justify-center gap-2 text-muted-foreground mb-8">
             <span className="h-px w-12 bg-border" />
             <Heart className="w-4 h-4 text-primary fill-primary" />
             <span className="h-px w-12 bg-border" />
           </div>
-          
+
           <div className="space-y-2 text-muted-foreground font-sans text-sm font-light">
             <p>For questions or travel assistance, please contact:</p>
-            <p className="text-foreground">hello@emmaandjames.love</p>
+            <p className="text-foreground">hello@bogdancorina.love</p>
           </div>
-          
+
           <p className="mt-12 text-xs text-muted-foreground font-sans tracking-wider">
-            #EmmaAndJamesForever
+            #BogdanAndCorinaForever
           </p>
         </motion.div>
       </div>

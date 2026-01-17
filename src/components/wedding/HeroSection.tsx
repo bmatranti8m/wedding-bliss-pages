@@ -1,78 +1,162 @@
 import { motion } from "framer-motion";
-import heroFloral from "@/assets/hero-floral.jpg";
+import couplePhoto from "@/assets/couple-photo.jpg";
 
 const HeroSection = () => {
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
       {/* Background Image */}
-      <div 
+      <div
         className="absolute inset-0 bg-cover bg-center bg-no-repeat"
-        style={{ backgroundImage: `url(${heroFloral})` }}
+        style={{ backgroundImage: `url(${couplePhoto})` }}
       />
-      
+
       {/* Overlay */}
       <div className="absolute inset-0 bg-background/30" />
-      
+
       {/* Content */}
       <div className="relative z-10 text-center px-6 py-20">
         <motion.p
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.2 }}
-          className="text-sm md:text-base tracking-[0.3em] uppercase text-muted-foreground mb-6 font-sans font-light"
+          className="text-sm md:text-base tracking-[0.3em] uppercase text-white mb-6 font-sans font-light drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)]"
         >
           We're Getting Married
         </motion.p>
-        
+
         <motion.h1
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1, delay: 0.4 }}
-          className="font-serif text-5xl md:text-7xl lg:text-8xl font-light text-foreground mb-4 italic"
+          className="font-serif text-5xl md:text-7xl lg:text-8xl font-light text-white mb-4 italic drop-shadow-[0_4px_8px_rgba(0,0,0,0.8)]"
         >
-          Emma <span className="text-primary">&</span> James
+          Bogdan <span className="text-primary drop-shadow-[0_4px_8px_rgba(0,0,0,0.8)]">&</span> Corina
         </motion.h1>
-        
+
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.8, delay: 0.8 }}
-          className="w-24 h-px bg-primary mx-auto my-8"
+          className="w-24 h-px bg-primary mx-auto my-8 shadow-lg"
         />
-        
+
         <motion.p
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 1 }}
-          className="font-serif text-2xl md:text-3xl text-foreground font-light"
+          className="font-serif text-2xl md:text-3xl text-white font-light drop-shadow-[0_2px_6px_rgba(0,0,0,0.8)]"
         >
-          June 15, 2025
+          June 16, 2026
         </motion.p>
-        
+
         <motion.p
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 1.2 }}
-          className="text-muted-foreground mt-4 font-sans font-light tracking-wide"
+          className="text-white mt-4 font-sans font-light tracking-wide drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)]"
         >
-          Vineyard Estate • Tuscany, Italy
+          Grand Hotel Villa Parisi • Castiglioncello, Tuscany
         </motion.p>
-        
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 1.4 }}
-          className="mt-12"
-        >
-          <a
-            href="#rsvp"
-            className="inline-block px-8 py-3 border border-primary text-foreground font-sans text-sm tracking-widest uppercase hover:bg-primary hover:text-primary-foreground transition-all duration-300"
-          >
-            RSVP
-          </a>
-        </motion.div>
       </div>
-      
+
+      {/* RSVP Button - Heart Shape */}
+      <div className="absolute bottom-16 left-1/2 -translate-x-1/2 z-10">
+        <div className="relative w-32 h-32 flex items-center justify-center">
+          {/* Heart-shaped ripple animations */}
+          <motion.svg
+            className="absolute inset-0 w-full h-full pointer-events-none"
+            viewBox="0 0 100 100"
+            animate={{
+              scale: [1, 1.5],
+              opacity: [0.6, 0],
+            }}
+            transition={{
+              duration: 2,
+              repeat: Infinity,
+              ease: "easeOut",
+            }}
+          >
+            <path
+              d="M50,85 C50,85 20,60 20,40 C20,25 30,20 40,25 C45,27.5 50,32.5 50,32.5 C50,32.5 55,27.5 60,25 C70,20 80,25 80,40 C80,60 50,85 50,85 Z"
+              fill="none"
+              stroke="hsl(var(--primary))"
+              strokeWidth="2"
+            />
+          </motion.svg>
+          <motion.svg
+            className="absolute inset-0 w-full h-full pointer-events-none"
+            viewBox="0 0 100 100"
+            animate={{
+              scale: [1, 1.5],
+              opacity: [0.6, 0],
+            }}
+            transition={{
+              duration: 2,
+              repeat: Infinity,
+              ease: "easeOut",
+              delay: 0.5,
+            }}
+          >
+            <path
+              d="M50,85 C50,85 20,60 20,40 C20,25 30,20 40,25 C45,27.5 50,32.5 50,32.5 C50,32.5 55,27.5 60,25 C70,20 80,25 80,40 C80,60 50,85 50,85 Z"
+              fill="none"
+              stroke="hsl(var(--primary))"
+              strokeWidth="2"
+            />
+          </motion.svg>
+          <motion.svg
+            className="absolute inset-0 w-full h-full pointer-events-none"
+            viewBox="0 0 100 100"
+            animate={{
+              scale: [1, 1.5],
+              opacity: [0.6, 0],
+            }}
+            transition={{
+              duration: 2,
+              repeat: Infinity,
+              ease: "easeOut",
+              delay: 1,
+            }}
+          >
+            <path
+              d="M50,85 C50,85 20,60 20,40 C20,25 30,20 40,25 C45,27.5 50,32.5 50,32.5 C50,32.5 55,27.5 60,25 C70,20 80,25 80,40 C80,60 50,85 50,85 Z"
+              fill="none"
+              stroke="hsl(var(--primary))"
+              strokeWidth="2"
+            />
+          </motion.svg>
+
+          {/* Heart-shaped Button */}
+          <motion.a
+            href="#rsvp"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+            transition={{ duration: 0.8, delay: 0.4 }}
+            className="relative group cursor-pointer"
+          >
+            <svg
+              viewBox="0 0 100 100"
+              className="w-28 h-28 drop-shadow-[0_2px_8px_rgba(0,0,0,0.8)]"
+            >
+              {/* Heart shape */}
+              <path
+                d="M50,85 C50,85 20,60 20,40 C20,25 30,20 40,25 C45,27.5 50,32.5 50,32.5 C50,32.5 55,27.5 60,25 C70,20 80,25 80,40 C80,60 50,85 50,85 Z"
+                fill="hsl(var(--primary))"
+                className="transition-all duration-300 group-hover:fill-primary/90"
+              />
+            </svg>
+            {/* Text centered in heart */}
+            <div className="absolute inset-0 flex items-center justify-center pt-2">
+              <span className="text-white font-sans text-sm tracking-widest uppercase font-medium">
+                RSVP
+              </span>
+            </div>
+          </motion.a>
+        </div>
+      </div>
+
       {/* Scroll indicator */}
       <motion.div
         initial={{ opacity: 0 }}

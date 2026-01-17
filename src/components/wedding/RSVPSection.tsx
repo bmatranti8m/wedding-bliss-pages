@@ -11,10 +11,8 @@ const RSVPSection = () => {
   const [formData, setFormData] = useState({
     name: "",
     email: "",
+    phone: "",
     attending: "",
-    guests: "1",
-    dietaryRestrictions: "",
-    message: "",
   });
 
   const handleSubmit = (e: React.FormEvent) => {
@@ -26,10 +24,8 @@ const RSVPSection = () => {
     setFormData({
       name: "",
       email: "",
+      phone: "",
       attending: "",
-      guests: "1",
-      dietaryRestrictions: "",
-      message: "",
     });
   };
 
@@ -57,7 +53,7 @@ const RSVPSection = () => {
           </h2>
           <div className="decorative-line mb-6" />
           <p className="text-muted-foreground font-light">
-            Please respond by May 1, 2025
+            Please respond by May 16, 2026
           </p>
         </motion.div>
 
@@ -68,132 +64,96 @@ const RSVPSection = () => {
           onSubmit={handleSubmit}
           className="space-y-6"
         >
-          <div className="grid md:grid-cols-2 gap-6">
-            <div>
-              <label
-                htmlFor="name"
-                className="block text-sm uppercase tracking-widest text-muted-foreground mb-2 font-sans"
-              >
-                Full Name
-              </label>
-              <input
-                type="text"
-                id="name"
-                name="name"
-                required
-                value={formData.name}
-                onChange={handleChange}
-                className="w-full px-4 py-3 bg-card border border-border focus:border-primary focus:outline-none transition-colors font-sans text-foreground"
-                placeholder="Your name"
-              />
-            </div>
-
-            <div>
-              <label
-                htmlFor="email"
-                className="block text-sm uppercase tracking-widest text-muted-foreground mb-2 font-sans"
-              >
-                Email
-              </label>
-              <input
-                type="email"
-                id="email"
-                name="email"
-                required
-                value={formData.email}
-                onChange={handleChange}
-                className="w-full px-4 py-3 bg-card border border-border focus:border-primary focus:outline-none transition-colors font-sans text-foreground"
-                placeholder="your@email.com"
-              />
-            </div>
-          </div>
-
-          <div className="grid md:grid-cols-2 gap-6">
-            <div>
-              <label
-                htmlFor="attending"
-                className="block text-sm uppercase tracking-widest text-muted-foreground mb-2 font-sans"
-              >
-                Will you attend?
-              </label>
-              <select
-                id="attending"
-                name="attending"
-                required
-                value={formData.attending}
-                onChange={handleChange}
-                className="w-full px-4 py-3 bg-card border border-border focus:border-primary focus:outline-none transition-colors font-sans text-foreground"
-              >
-                <option value="">Select...</option>
-                <option value="yes">Joyfully Accept</option>
-                <option value="no">Regretfully Decline</option>
-              </select>
-            </div>
-
-            <div>
-              <label
-                htmlFor="guests"
-                className="block text-sm uppercase tracking-widest text-muted-foreground mb-2 font-sans"
-              >
-                Number of Guests
-              </label>
-              <select
-                id="guests"
-                name="guests"
-                value={formData.guests}
-                onChange={handleChange}
-                className="w-full px-4 py-3 bg-card border border-border focus:border-primary focus:outline-none transition-colors font-sans text-foreground"
-              >
-                <option value="1">1</option>
-                <option value="2">2</option>
-                <option value="3">3</option>
-                <option value="4">4</option>
-              </select>
-            </div>
-          </div>
-
           <div>
             <label
-              htmlFor="dietaryRestrictions"
-              className="block text-sm uppercase tracking-widest text-muted-foreground mb-2 font-sans"
+              htmlFor="name"
+              className="block text-sm uppercase tracking-widest text-primary mb-2 font-sans font-semibold"
             >
-              Dietary Restrictions
+              Full Name
             </label>
             <input
               type="text"
-              id="dietaryRestrictions"
-              name="dietaryRestrictions"
-              value={formData.dietaryRestrictions}
+              id="name"
+              name="name"
+              required
+              value={formData.name}
               onChange={handleChange}
-              className="w-full px-4 py-3 bg-card border border-border focus:border-primary focus:outline-none transition-colors font-sans text-foreground"
-              placeholder="Any allergies or dietary requirements?"
+              className="w-full px-4 py-3 bg-white border border-gray-300 focus:border-primary focus:outline-none transition-colors font-sans text-foreground"
             />
           </div>
 
           <div>
             <label
-              htmlFor="message"
-              className="block text-sm uppercase tracking-widest text-muted-foreground mb-2 font-sans"
+              htmlFor="email"
+              className="block text-sm uppercase tracking-widest text-primary mb-2 font-sans font-semibold"
             >
-              Message for the Couple
+              Email Address
             </label>
-            <textarea
-              id="message"
-              name="message"
-              rows={4}
-              value={formData.message}
+            <input
+              type="email"
+              id="email"
+              name="email"
+              required
+              value={formData.email}
               onChange={handleChange}
-              className="w-full px-4 py-3 bg-card border border-border focus:border-primary focus:outline-none transition-colors font-sans text-foreground resize-none"
-              placeholder="Share your well wishes..."
+              className="w-full px-4 py-3 bg-white border border-gray-300 focus:border-primary focus:outline-none transition-colors font-sans text-foreground"
             />
+          </div>
+
+          <div>
+            <label
+              htmlFor="phone"
+              className="block text-sm uppercase tracking-widest text-primary mb-2 font-sans font-semibold"
+            >
+              Phone Number
+            </label>
+            <input
+              type="tel"
+              id="phone"
+              name="phone"
+              required
+              value={formData.phone}
+              onChange={handleChange}
+              className="w-full px-4 py-3 bg-white border border-gray-300 focus:border-primary focus:outline-none transition-colors font-sans text-foreground"
+            />
+          </div>
+
+          <div>
+            <label className="block text-sm uppercase tracking-widest text-primary mb-4 font-sans font-semibold">
+              Will you be attending?
+            </label>
+            <div className="space-y-3">
+              <label className="flex items-center p-4 bg-white border border-gray-300 cursor-pointer hover:border-primary transition-colors">
+                <input
+                  type="radio"
+                  name="attending"
+                  value="yes"
+                  checked={formData.attending === "yes"}
+                  onChange={handleChange}
+                  className="w-5 h-5 text-primary border-gray-300 focus:ring-primary mr-4"
+                />
+                <span className="text-primary font-sans text-base">Yes, I'll be there</span>
+              </label>
+              <label className="flex items-center p-4 bg-white border border-gray-300 cursor-pointer hover:border-primary transition-colors">
+                <input
+                  type="radio"
+                  name="attending"
+                  value="no"
+                  checked={formData.attending === "no"}
+                  onChange={handleChange}
+                  className="w-5 h-5 text-primary border-gray-300 focus:ring-primary mr-4"
+                />
+                <span className="text-primary font-sans text-base">Sorry, I can't make it</span>
+              </label>
+            </div>
           </div>
 
           <div className="text-center pt-4">
             <button
               type="submit"
-              className="px-12 py-4 bg-primary text-primary-foreground font-sans text-sm tracking-widest uppercase hover:bg-primary/90 transition-colors duration-300"
+              className="w-full py-4 bg-primary text-primary-foreground font-sans text-base tracking-widest uppercase hover:bg-primary/90 transition-colors duration-300"
             >
-              Send RSVP
+              Submit RSVP
             </button>
           </div>
         </motion.form>
