@@ -32,7 +32,7 @@ const OurStorySection = () => {
             <div className="overflow-hidden rounded-lg">
               <img
                 src={couplePhoto}
-                alt="Emma and James"
+                alt="Bogdan and Corina"
                 className="w-full h-auto"
               />
             </div>
@@ -49,8 +49,8 @@ const OurStorySection = () => {
                 How We Met
               </h3>
               <p className="text-muted-foreground font-light leading-relaxed">
-                It was a rainy afternoon in London when our paths crossed at a cozy bookshop in Notting Hill. 
-                James was searching for a first edition, and Emma was lost in the poetry section. 
+                It was a rainy afternoon in London when our paths crossed at a cozy bookshop in Notting Hill.
+                Bogdan was searching for a first edition, and Corina was lost in the poetry section.
                 A shared umbrella later, and the rest, as they say, is history.
               </p>
             </div>
@@ -60,9 +60,9 @@ const OurStorySection = () => {
                 The Proposal
               </h3>
               <p className="text-muted-foreground font-light leading-relaxed">
-                Two years later, James surprised Emma during a sunset picnic at the very spot 
-                where they shared their first kiss. With the city skyline as our witness and 
-                hearts full of love, Emma said yes under a canopy of fairy lights.
+                Two years later, Bogdan surprised Corina during a sunset picnic at the very spot
+                where they shared their first kiss. With the city skyline as our witness and
+                hearts full of love, Corina said yes under a canopy of fairy lights.
               </p>
             </div>
 
