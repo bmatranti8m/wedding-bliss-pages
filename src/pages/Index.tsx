@@ -1,5 +1,6 @@
 import HeroSection from "@/components/wedding/HeroSection";
 import OurStorySection from "@/components/wedding/OurStorySection";
+import TimelineSection from "@/components/wedding/TimelineSection";
 import EventDetailsSection from "@/components/wedding/EventDetailsSection";
 import CountdownSection from "@/components/wedding/CountdownSection";
 import RSVPSection from "@/components/wedding/RSVPSection";
@@ -10,6 +11,7 @@ const Index = () => {
     <main className="min-h-screen bg-background">
       <HeroSection />
       <OurStorySection />
+      <TimelineSection />
       <CountdownSection />
       <EventDetailsSection />
       <RSVPSection />

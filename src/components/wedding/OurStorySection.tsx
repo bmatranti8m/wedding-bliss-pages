@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 import { useInView } from "framer-motion";
 import { useRef } from "react";
-import couplePhoto from "@/assets/couple-photo.jpg";
+import couplePhoto from "@/assets/we.png";
 
 const OurStorySection = () => {
   const ref = useRef(null);
@@ -28,16 +28,14 @@ const OurStorySection = () => {
             initial={{ opacity: 0, x: -50 }}
             animate={isInView ? { opacity: 1, x: 0 } : {}}
             transition={{ duration: 0.8, delay: 0.2 }}
-            className="relative"
           >
-            <div className="aspect-square overflow-hidden">
+            <div className="overflow-hidden rounded-lg">
               <img
                 src={couplePhoto}
                 alt="Emma and James"
-                className="w-full h-full object-cover"
+                className="w-full h-auto"
               />
             </div>
-            <div className="absolute -bottom-4 -right-4 w-full h-full border border-primary -z-10" />
           </motion.div>
 
           <motion.div
