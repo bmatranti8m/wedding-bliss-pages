@@ -2,6 +2,7 @@ import { motion } from "framer-motion";
 import { useInView } from "framer-motion";
 import { useRef, useState } from "react";
 import { useToast } from "@/hooks/use-toast";
+import { Link } from "react-router-dom";
 
 // Google Apps Script deployment URL
 const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzlIYl8HPJkqdkc93QollHkpBAZj-q8IMM5H0KOfS3o7P2-rjG-NlXFbs60nReY8lr9Ww/exec';
@@ -215,6 +216,28 @@ const RSVPSection = () => {
             </button>
           </div>
         </motion.form>
+
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.8, delay: 0.4 }}
+          className="mt-12 text-center"
+        >
+          <div className="bg-gradient-to-r from-sage/20 via-rose/20 to-champagne/20 p-8 rounded-lg border border-primary/20">
+            <p className="font-serif text-2xl text-foreground mb-2">
+              Want to do more?
+            </p>
+            <p className="text-muted-foreground font-light mb-6">
+              Request songs, share advice, and make predictions!
+            </p>
+            <Link
+              to="/interactive"
+              className="inline-block px-8 py-3 bg-secondary text-secondary-foreground font-sans text-sm tracking-widest uppercase hover:bg-secondary/90 transition-colors duration-300 shadow-md"
+            >
+              Fun & Interactive →
+            </Link>
+          </div>
+        </motion.div>
       </div>
     </section>
   );

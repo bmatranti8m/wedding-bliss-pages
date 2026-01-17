@@ -2,10 +2,13 @@ import { motion } from "framer-motion";
 import { useInView } from "framer-motion";
 import { useRef } from "react";
 import { Heart } from "lucide-react";
+import { Link, useLocation } from "react-router-dom";
 
 const FooterSection = () => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-50px" });
+  const location = useLocation();
+  const isInteractivePage = location.pathname === '/interactive';
 
   return (
     <footer ref={ref} className="section-padding gradient-rose border-t border-border">
@@ -33,6 +36,30 @@ const FooterSection = () => {
             <p>For questions or travel assistance, please contact:</p>
             <p className="text-foreground">hello@bogdancorina.love</p>
           </div>
+
+          {!isInteractivePage && (
+            <div className="mt-8">
+              <Link
+                to="/interactive"
+                className="inline-flex items-center gap-2 text-primary hover:text-primary/80 transition-colors font-sans text-sm tracking-wider"
+              >
+                <span>Fun & Interactive</span>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="16"
+                  height="16"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                >
+                  <path d="m9 18 6-6-6-6" />
+                </svg>
+              </Link>
+            </div>
+          )}
 
           <p className="mt-12 text-xs text-muted-foreground font-sans tracking-wider">
             #BogdanAndCorinaForever
