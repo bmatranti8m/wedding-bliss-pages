@@ -3,6 +3,9 @@ import { useInView } from "framer-motion";
 import { useRef, useState } from "react";
 import { useToast } from "@/hooks/use-toast";
 
+// Google Apps Script deployment URL
+const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzlIYl8HPJkqdkc93QollHkpBAZj-q8IMM5H0KOfS3o7P2-rjG-NlXFbs60nReY8lr9Ww/exec';
+
 const RSVPSection = () => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
@@ -13,20 +16,54 @@ const RSVPSection = () => {
     email: "",
     phone: "",
     attending: "",
+    essay: "",
   });
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitted, setSubmitted] = useState(false);
+
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    toast({
-      title: "RSVP Received!",
-      description: "Thank you for responding. We can't wait to celebrate with you!",
-    });
-    setFormData({
-      name: "",
-      email: "",
-      phone: "",
-      attending: "",
-    });
+    setIsSubmitting(true);
+
+    try {
+      const timestamp = new Date().toISOString();
+      const params = new URLSearchParams();
+      params.append('name', formData.name);
+      params.append('email', formData.email);
+      params.append('phone', formData.phone);
+      params.append('attending', formData.attending);
+      params.append('essay', formData.essay || '');
+      params.append('timestamp', timestamp);
+
+      await fetch(GOOGLE_SCRIPT_URL, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: params.toString(),
+        mode: 'no-cors'  // Required for Google Apps Script
+      });
+
+      setSubmitted(true);
+      toast({
+        title: "RSVP Received!",
+        description: "Thank you for responding. We can't wait to celebrate with you!",
+      });
+      setFormData({
+        name: "",
+        email: "",
+        phone: "",
+        attending: "",
+        essay: "",
+      });
+    } catch (error) {
+      toast({
+        title: "Submission Failed",
+        description: "Please try again or contact us directly.",
+        variant: "destructive",
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const handleChange = (
@@ -128,6 +165,7 @@ const RSVPSection = () => {
                   type="radio"
                   name="attending"
                   value="yes"
+                  required
                   checked={formData.attending === "yes"}
                   onChange={handleChange}
                   className="w-5 h-5 text-primary border-gray-300 focus:ring-primary mr-4"
@@ -139,6 +177,7 @@ const RSVPSection = () => {
                   type="radio"
                   name="attending"
                   value="no"
+                  required
                   checked={formData.attending === "no"}
                   onChange={handleChange}
                   className="w-5 h-5 text-primary border-gray-300 focus:ring-primary mr-4"
@@ -148,12 +187,31 @@ const RSVPSection = () => {
             </div>
           </div>
 
+          <div>
+            <label
+              htmlFor="essay"
+              className="block text-sm uppercase tracking-widest text-primary mb-2 font-sans font-semibold"
+            >
+              Message for the Couple (Optional)
+            </label>
+            <textarea
+              id="essay"
+              name="essay"
+              rows={4}
+              value={formData.essay}
+              onChange={handleChange}
+              placeholder="Share your thoughts, wishes, or special memories..."
+              className="w-full px-4 py-3 bg-white border border-gray-300 focus:border-primary focus:outline-none transition-colors font-sans text-foreground resize-none"
+            />
+          </div>
+
           <div className="text-center pt-4">
             <button
               type="submit"
-              className="w-full py-4 bg-primary text-primary-foreground font-sans text-base tracking-widest uppercase hover:bg-primary/90 transition-colors duration-300"
+              disabled={isSubmitting || !formData.attending}
+              className="w-full py-4 bg-primary text-primary-foreground font-sans text-base tracking-widest uppercase hover:bg-primary/90 transition-colors duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
             >
-              Submit RSVP
+              {isSubmitting ? 'Submitting...' : 'Submit RSVP'}
             </button>
           </div>
         </motion.form>
