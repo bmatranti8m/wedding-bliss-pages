@@ -1,12 +1,21 @@
 {
   "permissions": {
     "allow": [
-      "Bash(openspec list:*)"
+      "Bash(openspec list:*)",
+      "Bash(curl:*)",
+      "Bash(sips:*)",
+      "Bash(ls:*)",
+      "Bash(brew --version:*)",
+      "Bash(brew install:*)",
+      "Bash(ffmpeg:*)",
+      "Bash(git add:*)",
+      "Bash(git commit:*)",
+      "Bash(git push:*)"
     ]
   },
+  "enableAllProjectMcpServers": true,
   "enabledMcpjsonServers": [
     "everything",
     "playwright"
-  ],
-  "enableAllProjectMcpServers": true
+  ]
 }
