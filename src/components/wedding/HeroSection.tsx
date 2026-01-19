@@ -10,8 +10,8 @@ const HeroSection = () => {
         style={{ backgroundImage: `url(${couplePhoto})` }}
       />
 
-      {/* Overlay */}
-      <div className="absolute inset-0 bg-background/30" />
+      {/* Dark Overlay */}
+      <div className="absolute inset-0 bg-black/50" />
 
       {/* Content */}
       <div className="relative z-10 text-center px-6 py-20">
