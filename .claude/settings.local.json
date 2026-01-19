@@ -1,0 +1,12 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(openspec list:*)"
+    ]
+  },
+  "enabledMcpjsonServers": [
+    "everything",
+    "playwright"
+  ],
+  "enableAllProjectMcpServers": true
+}
