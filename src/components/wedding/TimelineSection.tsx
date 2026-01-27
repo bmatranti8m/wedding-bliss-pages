@@ -14,6 +14,7 @@ interface TimelineEvent {
   description: string;
   image: string;
   position: "left" | "right";
+  objectFit?: "cover" | "contain";
 }
 
 const timelineEvents: TimelineEvent[] = [
@@ -51,6 +52,7 @@ const timelineEvents: TimelineEvent[] = [
     description: "During a helicopter ride over Miami Beach, with the stunning coastline below, he asked and she said yes.",
     image: img5385,
     position: "left",
+    objectFit: "contain",
   },
   {
     date: "June 16, 2026",
@@ -96,7 +98,7 @@ const TimelineItem = ({ event, index }: { event: TimelineEvent; index: number })
                 <img
                   src={event.image}
                   alt={event.title}
-                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                  className={`w-full h-full ${event.objectFit === "contain" ? "object-contain" : "object-cover"} transition-transform duration-700 group-hover:scale-110`}
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
               </div>
@@ -146,7 +148,7 @@ const TimelineItem = ({ event, index }: { event: TimelineEvent; index: number })
                 <img
                   src={event.image}
                   alt={event.title}
-                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                  className={`w-full h-full ${event.objectFit === "contain" ? "object-contain" : "object-cover"} transition-transform duration-700 group-hover:scale-110`}
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
               </div>
