@@ -40,19 +40,19 @@ const timelineEvents: TimelineEvent[] = [
     position: "left",
   },
   {
-    date: "Autumn 2025",
-    title: "Moving In Together",
-    description: "After a long wait, Corina finally moved to Zurich, and they started building their life together.",
-    image: wePhoto,
-    position: "right",
-  },
-  {
     date: "Spring 2025",
     title: "The Proposal",
     description: "During a helicopter ride over Miami Beach, with the stunning coastline below, he asked and she said yes.",
     image: img5385,
-    position: "left",
+    position: "right",
     objectFit: "contain",
+  },
+  {
+    date: "Autumn 2025",
+    title: "Moving In Together",
+    description: "After a long wait, Corina finally moved to Zurich, and they started building their life together.",
+    image: wePhoto,
+    position: "left",
   },
   {
     date: "June 16, 2026",
