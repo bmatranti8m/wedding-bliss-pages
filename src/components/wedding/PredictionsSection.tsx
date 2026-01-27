@@ -10,6 +10,47 @@ interface PredictionsSectionProps {
   guestName: string;
 }
 
+interface PollQuestionProps {
+  question: string;
+  name: string;
+  option1: string;
+  option2: string;
+  value: string;
+  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+}
+
+const PollQuestion = ({ question, name, option1, option2, value, onChange }: PollQuestionProps) => (
+  <div className="bg-white/70 p-6 rounded-lg">
+    <p className="font-serif text-xl text-foreground mb-4">{question}</p>
+    <div className="space-y-3">
+      <label className="flex items-center p-3 bg-white border border-gray-300 cursor-pointer hover:border-primary transition-colors rounded">
+        <input
+          type="radio"
+          name={name}
+          value={option1}
+          checked={value === option1}
+          onChange={onChange}
+          required
+          className="w-4 h-4 text-primary border-gray-300 focus:ring-primary mr-3"
+        />
+        <span className="text-primary font-sans">{option1}</span>
+      </label>
+      <label className="flex items-center p-3 bg-white border border-gray-300 cursor-pointer hover:border-primary transition-colors rounded">
+        <input
+          type="radio"
+          name={name}
+          value={option2}
+          checked={value === option2}
+          onChange={onChange}
+          required
+          className="w-4 h-4 text-primary border-gray-300 focus:ring-primary mr-3"
+        />
+        <span className="text-primary font-sans">{option2}</span>
+      </label>
+    </div>
+  </div>
+);
+
 const PredictionsSection = ({ guestName }: PredictionsSectionProps) => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
@@ -79,48 +120,6 @@ const PredictionsSection = ({ guestName }: PredictionsSectionProps) => {
     }));
   };
 
-  const PollQuestion = ({
-    question,
-    name,
-    option1,
-    option2
-  }: {
-    question: string;
-    name: string;
-    option1: string;
-    option2: string;
-  }) => (
-    <div className="bg-white/70 p-6 rounded-lg">
-      <p className="font-serif text-xl text-foreground mb-4">{question}</p>
-      <div className="space-y-3">
-        <label className="flex items-center p-3 bg-white border border-gray-300 cursor-pointer hover:border-primary transition-colors rounded">
-          <input
-            type="radio"
-            name={name}
-            value={option1}
-            checked={formData[name as keyof typeof formData] === option1}
-            onChange={handleChange}
-            required
-            className="w-4 h-4 text-primary border-gray-300 focus:ring-primary mr-3"
-          />
-          <span className="text-primary font-sans">{option1}</span>
-        </label>
-        <label className="flex items-center p-3 bg-white border border-gray-300 cursor-pointer hover:border-primary transition-colors rounded">
-          <input
-            type="radio"
-            name={name}
-            value={option2}
-            checked={formData[name as keyof typeof formData] === option2}
-            onChange={handleChange}
-            required
-            className="w-4 h-4 text-primary border-gray-300 focus:ring-primary mr-3"
-          />
-          <span className="text-primary font-sans">{option2}</span>
-        </label>
-      </div>
-    </div>
-  );
-
   return (
     <section ref={ref} className="section-padding bg-champagne/20">
       <div className="max-w-3xl mx-auto">
@@ -153,6 +152,8 @@ const PredictionsSection = ({ guestName }: PredictionsSectionProps) => {
             name="criesFirst"
             option1="Bogdan"
             option2="Corina"
+            value={formData.criesFirst}
+            onChange={handleChange}
           />
 
           <PollQuestion
@@ -160,6 +161,8 @@ const PredictionsSection = ({ guestName }: PredictionsSectionProps) => {
             name="betterDancer"
             option1="Bogdan"
             option2="Corina"
+            value={formData.betterDancer}
+            onChange={handleChange}
           />
 
           <PollQuestion
@@ -167,6 +170,8 @@ const PredictionsSection = ({ guestName }: PredictionsSectionProps) => {
             name="wakesEarlier"
             option1="Bogdan"
             option2="Corina"
+            value={formData.wakesEarlier}
+            onChange={handleChange}
           />
 
           <PollQuestion
@@ -174,6 +179,8 @@ const PredictionsSection = ({ guestName }: PredictionsSectionProps) => {
             name="betterCook"
             option1="Bogdan"
             option2="Corina"
+            value={formData.betterCook}
+            onChange={handleChange}
           />
 
           <PollQuestion
@@ -181,6 +188,8 @@ const PredictionsSection = ({ guestName }: PredictionsSectionProps) => {
             name="moreRomantic"
             option1="Bogdan"
             option2="Corina"
+            value={formData.moreRomantic}
+            onChange={handleChange}
           />
 
           <PollQuestion
@@ -188,6 +197,8 @@ const PredictionsSection = ({ guestName }: PredictionsSectionProps) => {
             name="saysILoveYouFirst"
             option1="Bogdan"
             option2="Corina"
+            value={formData.saysILoveYouFirst}
+            onChange={handleChange}
           />
 
           <div className="text-center pt-4">
