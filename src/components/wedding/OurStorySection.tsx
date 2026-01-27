@@ -49,9 +49,7 @@ const OurStorySection = () => {
                 How We Met
               </h3>
               <p className="text-muted-foreground font-light leading-relaxed">
-                It was a rainy afternoon in London when our paths crossed at a cozy bookshop in Notting Hill.
-                Bogdan was searching for a first edition, and Corina was lost in the poetry section.
-                A shared umbrella later, and the rest, as they say, is history.
+                Corina was on vacation in Zurich, Switzerland, and they went on a hike together that changed everything.
               </p>
             </div>
 
@@ -60,9 +58,9 @@ const OurStorySection = () => {
                 The Proposal
               </h3>
               <p className="text-muted-foreground font-light leading-relaxed">
-                Two years later, Bogdan surprised Corina during a sunset picnic at the very spot
-                where they shared their first kiss. With the city skyline as our witness and
-                hearts full of love, Corina said yes under a canopy of fairy lights.
+                Bogdan surprised Corina during a helicopter ride over Miami Beach.
+                As they soared above the sparkling turquoise waters and iconic coastline,
+                he asked the question that would begin their forever — and she said yes.
               </p>
             </div>
 

@@ -34,7 +34,8 @@ const FooterSection = () => {
 
           <div className="space-y-2 text-muted-foreground font-sans text-sm font-light">
             <p>For questions or travel assistance, please contact:</p>
-            <p className="text-foreground">hello@bogdancorina.love</p>
+            <p className="text-foreground">bogdancristian.matran@gmail.com</p>
+            <p className="text-foreground">corina.cioflinc@gmail.com</p>
           </div>
 
           {!isInteractivePage && (
