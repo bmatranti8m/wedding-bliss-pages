@@ -5,7 +5,7 @@ import img0528 from "@/assets/IMG_0528.jpg";
 import img1868 from "@/assets/IMG_1868.jpg";
 import img7239 from "@/assets/IMG_7239.jpg";
 import wePhoto from "@/assets/we.png";
-import img5385 from "@/assets/IMG_5385.JPG";
+import img5385 from "@/assets/IMG_5385.jpg";
 import couplePhoto from "@/assets/couple-photo.jpg";
 
 interface TimelineEvent {
