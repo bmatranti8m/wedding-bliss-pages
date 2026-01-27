@@ -4,7 +4,7 @@ import { useRef } from "react";
 import img0528 from "@/assets/IMG_0528.jpg";
 import img1868 from "@/assets/IMG_1868.jpg";
 import img7239 from "@/assets/IMG_7239.jpg";
-import img7528 from "@/assets/IMG_7528.jpg";
+import wePhoto from "@/assets/we.png";
 import img5385 from "@/assets/IMG_5385.JPG";
 import couplePhoto from "@/assets/couple-photo.jpg";
 
@@ -42,7 +42,7 @@ const timelineEvents: TimelineEvent[] = [
     date: "Autumn 2025",
     title: "Moving In Together",
     description: "After a long wait, Corina finally moved to Zurich, and they started building their life together.",
-    image: img7528,
+    image: wePhoto,
     position: "right",
   },
   {
