@@ -200,11 +200,15 @@ const RSVPSection = () => {
               name="essay"
               rows={4}
               required={formData.attending === "no"}
+              minLength={formData.attending === "no" ? 200 : undefined}
               value={formData.essay}
               onChange={handleChange}
-              placeholder={formData.attending === "no" ? "Please let us know why you can't make it..." : "Share your thoughts, wishes, or special memories..."}
+              placeholder={formData.attending === "no" ? "Please let us know why you can't make it (minimum 200 characters)..." : "Share your thoughts, wishes, or special memories..."}
               className="w-full px-4 py-3 bg-white border border-gray-300 focus:border-primary focus:outline-none transition-colors font-sans text-foreground resize-none"
             />
+            {formData.attending === "no" && formData.essay.length > 0 && formData.essay.length < 200 && (
+              <p className="text-sm text-muted-foreground mt-1">{formData.essay.length}/200 characters</p>
+            )}
           </div>
 
           <div className="text-center pt-4">
