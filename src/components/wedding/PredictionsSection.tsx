@@ -4,7 +4,7 @@ import { useRef, useState } from "react";
 import { useToast } from "@/hooks/use-toast";
 
 // Replace with your Google Apps Script deployment URL for predictions
-const PREDICTIONS_URL = 'YOUR_PREDICTIONS_SCRIPT_URL';
+const PREDICTIONS_URL = 'https://script.google.com/macros/s/AKfycbwQBwMxSt7ZFJgXkqMdezNbxDDQRJ7m_uW-4CWL9zfvfyNMVzI5kgB30fTxIfwUKLYX/exec';
 
 interface PredictionsSectionProps {
   guestName: string;

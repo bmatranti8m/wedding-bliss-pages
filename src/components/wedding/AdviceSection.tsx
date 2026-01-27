@@ -4,7 +4,7 @@ import { useRef, useState } from "react";
 import { useToast } from "@/hooks/use-toast";
 
 // Replace with your Google Apps Script deployment URL for advice
-const ADVICE_URL = 'YOUR_ADVICE_SCRIPT_URL';
+const ADVICE_URL = 'https://script.google.com/macros/s/AKfycbwQBwMxSt7ZFJgXkqMdezNbxDDQRJ7m_uW-4CWL9zfvfyNMVzI5kgB30fTxIfwUKLYX/exec';
 
 interface AdviceSectionProps {
   guestName: string;

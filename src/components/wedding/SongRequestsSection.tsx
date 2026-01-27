@@ -4,7 +4,7 @@ import { useRef, useState } from "react";
 import { useToast } from "@/hooks/use-toast";
 
 // Replace with your Google Apps Script deployment URL for song requests
-const SONG_REQUESTS_URL = 'YOUR_SONG_REQUESTS_SCRIPT_URL';
+const SONG_REQUESTS_URL = 'https://script.google.com/macros/s/AKfycbwQBwMxSt7ZFJgXkqMdezNbxDDQRJ7m_uW-4CWL9zfvfyNMVzI5kgB30fTxIfwUKLYX/exec';
 
 interface SongRequestsSectionProps {
   guestName: string;
