@@ -88,14 +88,17 @@ const Interactive = () => {
                 id="guestName"
                 value={guestName}
                 onChange={(e) => setGuestName(e.target.value)}
+                onFocus={(e) => e.target.scrollIntoView({ behavior: 'smooth', block: 'center' })}
                 placeholder="Enter your full name"
                 className="w-full px-4 py-3 bg-white border border-gray-300 focus:border-primary focus:outline-none transition-colors font-sans text-foreground"
               />
-              {guestName && (
-                <p className="mt-4 text-center text-muted-foreground font-light">
-                  Thanks, {guestName}! Scroll down to explore all the fun sections below.
-                </p>
-              )}
+              <div className="h-12 mt-4">
+                {guestName && (
+                  <p className="text-center text-muted-foreground font-light">
+                    Thanks, {guestName}! Scroll down to explore all the fun sections below.
+                  </p>
+                )}
+              </div>
             </motion.div>
           </div>
         </section>
