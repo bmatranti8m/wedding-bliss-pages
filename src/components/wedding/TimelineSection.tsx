@@ -5,7 +5,7 @@ import img0528 from "@/assets/IMG_0528.jpg";
 import img1868 from "@/assets/IMG_1868.jpg";
 import img7239 from "@/assets/IMG_7239.jpg";
 import img7528 from "@/assets/IMG_7528.jpg";
-import img7617 from "@/assets/IMG_7617.jpg";
+import img5385 from "@/assets/IMG_5385.JPG";
 import couplePhoto from "@/assets/couple-photo.jpg";
 
 interface TimelineEvent {
@@ -49,7 +49,7 @@ const timelineEvents: TimelineEvent[] = [
     date: "Spring 2025",
     title: "The Proposal",
     description: "During a helicopter ride over Miami Beach, with the stunning coastline below, he asked and she said yes.",
-    image: img7617,
+    image: img5385,
     position: "left",
   },
   {
