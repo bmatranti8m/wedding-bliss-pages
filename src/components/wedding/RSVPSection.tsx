@@ -193,15 +193,16 @@ const RSVPSection = () => {
               htmlFor="essay"
               className="block text-sm uppercase tracking-widest text-primary mb-2 font-sans font-semibold"
             >
-              Message for the Couple (Optional)
+              Message for the Couple {formData.attending === "no" ? "(Required)" : "(Optional)"}
             </label>
             <textarea
               id="essay"
               name="essay"
               rows={4}
+              required={formData.attending === "no"}
               value={formData.essay}
               onChange={handleChange}
-              placeholder="Share your thoughts, wishes, or special memories..."
+              placeholder={formData.attending === "no" ? "Please let us know why you can't make it..." : "Share your thoughts, wishes, or special memories..."}
               className="w-full px-4 py-3 bg-white border border-gray-300 focus:border-primary focus:outline-none transition-colors font-sans text-foreground resize-none"
             />
           </div>
