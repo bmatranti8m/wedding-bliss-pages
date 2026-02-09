@@ -1,13 +1,15 @@
 import { motion } from "framer-motion";
 import { useInView } from "framer-motion";
 import { useRef, useState, useEffect } from "react";
+import { useTranslation } from "@/i18n/LanguageContext";
 
 const CountdownSection = () => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
-  
+  const { t } = useTranslation();
+
   const weddingDate = new Date("2026-06-16T17:00:00");
-  
+
   const [timeLeft, setTimeLeft] = useState({
     days: 0,
     hours: 0,
@@ -19,7 +21,7 @@ const CountdownSection = () => {
     const calculateTimeLeft = () => {
       const now = new Date();
       const difference = weddingDate.getTime() - now.getTime();
-      
+
       if (difference > 0) {
         setTimeLeft({
           days: Math.floor(difference / (1000 * 60 * 60 * 24)),
@@ -36,10 +38,10 @@ const CountdownSection = () => {
   }, []);
 
   const timeUnits = [
-    { label: "Days", value: timeLeft.days },
-    { label: "Hours", value: timeLeft.hours },
-    { label: "Minutes", value: timeLeft.minutes },
-    { label: "Seconds", value: timeLeft.seconds },
+    { label: t("countdown.days"), value: timeLeft.days },
+    { label: t("countdown.hours"), value: timeLeft.hours },
+    { label: t("countdown.minutes"), value: timeLeft.minutes },
+    { label: t("countdown.seconds"), value: timeLeft.seconds },
   ];
 
   return (
@@ -52,7 +54,7 @@ const CountdownSection = () => {
         >
           <p className="decorative-flourish mb-4">∞</p>
           <h2 className="font-serif text-4xl md:text-5xl font-light text-foreground mb-4">
-            Counting Down to Forever
+            {t("countdown.title")}
           </h2>
           <div className="decorative-line mb-12" />
         </motion.div>
@@ -63,7 +65,7 @@ const CountdownSection = () => {
           transition={{ duration: 0.8, delay: 0.2 }}
           className="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-8"
         >
-          {timeUnits.map((unit, index) => (
+          {timeUnits.map((unit) => (
             <div
               key={unit.label}
               className="bg-background/60 backdrop-blur-sm p-6 md:p-8 border border-border"
@@ -84,7 +86,7 @@ const CountdownSection = () => {
           transition={{ duration: 0.8, delay: 0.6 }}
           className="mt-12 font-serif text-xl text-muted-foreground italic"
         >
-          Until we say "I do"
+          {t("countdown.untilIDo")}
         </motion.p>
       </div>
     </section>

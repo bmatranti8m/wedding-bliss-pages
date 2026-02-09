@@ -3,12 +3,14 @@ import { useInView } from "framer-motion";
 import { useRef } from "react";
 import { Heart } from "lucide-react";
 import { Link, useLocation } from "react-router-dom";
+import { useTranslation } from "@/i18n/LanguageContext";
 
 const FooterSection = () => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-50px" });
   const location = useLocation();
   const isInteractivePage = location.pathname === '/interactive';
+  const { t } = useTranslation();
 
   return (
     <footer ref={ref} className="section-padding gradient-rose border-t border-border">
@@ -23,7 +25,7 @@ const FooterSection = () => {
           </div>
 
           <p className="font-serif text-2xl text-foreground mb-4 italic">
-            We can't wait to celebrate with you!
+            {t("footer.celebrate")}
           </p>
 
           <div className="flex items-center justify-center gap-2 text-muted-foreground mb-8">
@@ -33,7 +35,7 @@ const FooterSection = () => {
           </div>
 
           <div className="space-y-2 text-muted-foreground font-sans text-sm font-light">
-            <p>For questions or travel assistance, please contact:</p>
+            <p>{t("footer.contact")}</p>
             <p className="text-foreground">bogdancristian.matran@gmail.com</p>
             <p className="text-foreground">corina.cioflinc@gmail.com</p>
           </div>
@@ -44,7 +46,7 @@ const FooterSection = () => {
                 to="/interactive"
                 className="inline-flex items-center gap-2 text-primary hover:text-primary/80 transition-colors font-sans text-sm tracking-wider"
               >
-                <span>Fun & Interactive</span>
+                <span>{t("footer.funInteractive")}</span>
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   width="16"

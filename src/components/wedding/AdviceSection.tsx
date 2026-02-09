@@ -2,6 +2,7 @@ import { motion } from "framer-motion";
 import { useInView } from "framer-motion";
 import { useRef, useState } from "react";
 import { useToast } from "@/hooks/use-toast";
+import { useTranslation } from "@/i18n/LanguageContext";
 
 // Replace with your Google Apps Script deployment URL for advice
 const ADVICE_URL = 'https://script.google.com/macros/s/AKfycbwQBwMxSt7ZFJgXkqMdezNbxDDQRJ7m_uW-4CWL9zfvfyNMVzI5kgB30fTxIfwUKLYX/exec';
@@ -14,6 +15,7 @@ const AdviceSection = ({ guestName }: AdviceSectionProps) => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
   const { toast } = useToast();
+  const { t } = useTranslation();
 
   const [formData, setFormData] = useState({
     adviceType: "",
@@ -42,8 +44,8 @@ const AdviceSection = ({ guestName }: AdviceSectionProps) => {
       });
 
       toast({
-        title: "Thank You!",
-        description: "Your advice means the world to us!",
+        title: t("advice.successTitle"),
+        description: t("advice.successDesc"),
       });
       setFormData({
         adviceType: "",
@@ -51,8 +53,8 @@ const AdviceSection = ({ guestName }: AdviceSectionProps) => {
       });
     } catch (error) {
       toast({
-        title: "Submission Failed",
-        description: "Please try again later.",
+        title: t("shared.submissionFailed"),
+        description: t("shared.tryAgainLater"),
         variant: "destructive",
       });
     } finally {
@@ -80,11 +82,11 @@ const AdviceSection = ({ guestName }: AdviceSectionProps) => {
         >
           <p className="decorative-flourish mb-4">♥</p>
           <h2 className="font-serif text-4xl md:text-5xl font-light text-foreground mb-4">
-            Advice for the Newlyweds
+            {t("advice.title")}
           </h2>
           <div className="decorative-line mb-6" />
           <p className="text-muted-foreground font-light">
-            Share your wisdom, favorite date ideas, or marriage tips!
+            {t("advice.subtitle")}
           </p>
         </motion.div>
 
@@ -101,7 +103,7 @@ const AdviceSection = ({ guestName }: AdviceSectionProps) => {
               htmlFor="adviceType"
               className="block text-sm uppercase tracking-widest text-primary mb-2 font-sans font-semibold"
             >
-              Type of Advice
+              {t("advice.typeLabel")}
             </label>
             <select
               id="adviceType"
@@ -111,12 +113,12 @@ const AdviceSection = ({ guestName }: AdviceSectionProps) => {
               onChange={handleChange}
               className="w-full px-4 py-3 bg-white border border-gray-300 focus:border-primary focus:outline-none transition-colors font-sans text-foreground"
             >
-              <option value="">Choose one...</option>
-              <option value="Marriage Advice">Marriage Advice</option>
-              <option value="Date Night Idea">Date Night Idea</option>
-              <option value="Life Tip">Life Tip</option>
-              <option value="Words of Wisdom">Words of Wisdom</option>
-              <option value="Other">Other</option>
+              <option value="">{t("advice.chooseOne")}</option>
+              <option value="Marriage Advice">{t("advice.marriageAdvice")}</option>
+              <option value="Date Night Idea">{t("advice.dateNightIdea")}</option>
+              <option value="Life Tip">{t("advice.lifeTip")}</option>
+              <option value="Words of Wisdom">{t("advice.wordsOfWisdom")}</option>
+              <option value="Other">{t("advice.other")}</option>
             </select>
           </div>
 
@@ -125,7 +127,7 @@ const AdviceSection = ({ guestName }: AdviceSectionProps) => {
               htmlFor="advice"
               className="block text-sm uppercase tracking-widest text-primary mb-2 font-sans font-semibold"
             >
-              Your Advice
+              {t("advice.yourAdvice")}
             </label>
             <textarea
               id="advice"
@@ -134,7 +136,7 @@ const AdviceSection = ({ guestName }: AdviceSectionProps) => {
               required
               value={formData.advice}
               onChange={handleChange}
-              placeholder="Share your wisdom with the happy couple..."
+              placeholder={t("advice.placeholder")}
               className="w-full px-4 py-3 bg-white border border-gray-300 focus:border-primary focus:outline-none transition-colors font-sans text-foreground resize-none"
             />
           </div>
@@ -145,7 +147,7 @@ const AdviceSection = ({ guestName }: AdviceSectionProps) => {
               disabled={isSubmitting || !guestName}
               className="w-full py-4 bg-primary text-primary-foreground font-sans text-base tracking-widest uppercase hover:bg-primary/90 transition-colors duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
             >
-              {isSubmitting ? 'Sharing...' : !guestName ? 'Enter Your Name Above First' : 'Share Your Advice'}
+              {isSubmitting ? t("advice.submitting") : !guestName ? t("advice.enterName") : t("advice.submit")}
             </button>
           </div>
         </motion.form>

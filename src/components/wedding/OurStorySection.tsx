@@ -2,10 +2,12 @@ import { motion } from "framer-motion";
 import { useInView } from "framer-motion";
 import { useRef } from "react";
 import couplePhoto from "@/assets/we.png";
+import { useTranslation } from "@/i18n/LanguageContext";
 
 const OurStorySection = () => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
+  const { t } = useTranslation();
 
   return (
     <section ref={ref} className="section-padding gradient-rose">
@@ -18,7 +20,7 @@ const OurStorySection = () => {
         >
           <p className="decorative-flourish mb-4">♥</p>
           <h2 className="font-serif text-4xl md:text-5xl font-light text-foreground mb-4">
-            Our Love Story
+            {t("story.title")}
           </h2>
           <div className="decorative-line" />
         </motion.div>
@@ -32,7 +34,7 @@ const OurStorySection = () => {
             <div className="overflow-hidden rounded-lg">
               <img
                 src={couplePhoto}
-                alt="Bogdan and Corina"
+                alt={t("story.imageAlt")}
                 className="w-full h-auto"
               />
             </div>
@@ -46,27 +48,25 @@ const OurStorySection = () => {
           >
             <div className="space-y-4">
               <h3 className="font-serif text-2xl text-foreground italic">
-                How We Met
+                {t("story.howWeMet")}
               </h3>
               <p className="text-muted-foreground font-light leading-relaxed">
-                Corina was on vacation in Zurich, Switzerland, and they went on a hike together that changed everything.
+                {t("story.howWeMetDesc")}
               </p>
             </div>
 
             <div className="space-y-4">
               <h3 className="font-serif text-2xl text-foreground italic">
-                The Proposal
+                {t("story.proposal")}
               </h3>
               <p className="text-muted-foreground font-light leading-relaxed">
-                Bogdan surprised Corina during a helicopter ride over Miami Beach.
-                As they soared above the sparkling turquoise waters and iconic coastline,
-                he asked the question that would begin their forever — and she said yes.
+                {t("story.proposalDesc")}
               </p>
             </div>
 
             <div className="pt-4">
               <p className="font-serif text-xl text-primary italic">
-                "In you, I've found the love of my life and my closest, truest friend."
+                {t("story.quote")}
               </p>
             </div>
           </motion.div>

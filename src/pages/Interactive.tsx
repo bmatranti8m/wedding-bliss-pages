@@ -5,9 +5,11 @@ import AdviceSection from "@/components/wedding/AdviceSection";
 import PredictionsSection from "@/components/wedding/PredictionsSection";
 import FooterSection from "@/components/wedding/FooterSection";
 import { Link } from "react-router-dom";
+import { useTranslation } from "@/i18n/LanguageContext";
 
 const Interactive = () => {
   const [guestName, setGuestName] = useState("");
+  const { t } = useTranslation();
 
   // Scroll to top when component mounts
   useEffect(() => {
@@ -41,10 +43,10 @@ const Interactive = () => {
             >
               <path d="m15 18-6-6 6-6" />
             </svg>
-            <span className="font-sans text-sm uppercase tracking-widest">Back to Wedding</span>
+            <span className="font-sans text-sm uppercase tracking-widest">{t("interactive.backToWedding")}</span>
           </Link>
           <h1 className="font-serif text-2xl md:text-3xl text-primary">
-            Fun & Interactive
+            {t("interactive.title")}
           </h1>
           <div className="w-24" /> {/* Spacer for centering */}
         </div>
@@ -63,11 +65,11 @@ const Interactive = () => {
             >
               <p className="decorative-flourish mb-4">✨</p>
               <h2 className="font-serif text-3xl md:text-4xl font-light text-foreground mb-4">
-                Welcome!
+                {t("interactive.welcome")}
               </h2>
               <div className="decorative-line mb-6" />
               <p className="text-muted-foreground font-light mb-8">
-                First, let us know who you are
+                {t("interactive.letUsKnow")}
               </p>
             </motion.div>
 
@@ -81,7 +83,7 @@ const Interactive = () => {
                 htmlFor="guestName"
                 className="block text-sm uppercase tracking-widest text-primary mb-2 font-sans font-semibold"
               >
-                Your Name
+                {t("interactive.yourName")}
               </label>
               <input
                 type="text"
@@ -89,13 +91,13 @@ const Interactive = () => {
                 value={guestName}
                 onChange={(e) => setGuestName(e.target.value)}
                 onFocus={(e) => e.target.scrollIntoView({ behavior: 'smooth', block: 'center' })}
-                placeholder="Enter your full name"
+                placeholder={t("interactive.namePlaceholder")}
                 className="w-full px-4 py-3 bg-white border border-gray-300 focus:border-primary focus:outline-none transition-colors font-sans text-foreground"
               />
               <div className="h-12 mt-4">
                 {guestName && (
                   <p className="text-center text-muted-foreground font-light">
-                    Thanks, {guestName}! Scroll down to explore all the fun sections below.
+                    {t("interactive.thanks", { name: guestName })}
                   </p>
                 )}
               </div>

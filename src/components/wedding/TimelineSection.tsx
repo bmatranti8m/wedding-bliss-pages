@@ -7,6 +7,7 @@ import img7239 from "@/assets/IMG_7239.jpg";
 import wePhoto from "@/assets/we.png";
 import img5385 from "@/assets/IMG_5385.jpg";
 import couplePhoto from "@/assets/couple-photo.jpg";
+import { useTranslation } from "@/i18n/LanguageContext";
 
 interface TimelineEvent {
   date: string;
@@ -16,52 +17,6 @@ interface TimelineEvent {
   position: "left" | "right";
   objectFit?: "cover" | "contain";
 }
-
-const timelineEvents: TimelineEvent[] = [
-  {
-    date: "Autumn 2023",
-    title: "First Meeting",
-    description: "Corina was on vacation in Zurich, Switzerland, and they went on a hike together that changed everything.",
-    image: img0528,
-    position: "left",
-  },
-  {
-    date: "Winter 2023",
-    title: "First Date",
-    description: "Bogdan visited Corina in Bucharest, and what started as a visit turned into the beginning of forever.",
-    image: img1868,
-    position: "right",
-  },
-  {
-    date: "February 2024",
-    title: "First Trip Together",
-    description: "A romantic Valentine's Day getaway to Constanta, where they discovered their shared love for adventure.",
-    image: img7239,
-    position: "left",
-  },
-  {
-    date: "Spring 2025",
-    title: "The Proposal",
-    description: "During a helicopter ride over Miami Beach, with the stunning coastline below, he asked and she said yes.",
-    image: img5385,
-    position: "right",
-    objectFit: "contain",
-  },
-  {
-    date: "Autumn 2025",
-    title: "Moving In Together",
-    description: "After a long wait, Corina finally moved to Zurich, and they started building their life together.",
-    image: wePhoto,
-    position: "left",
-  },
-  {
-    date: "June 16, 2026",
-    title: "Our Wedding Day",
-    description: "Grand Hotel Villa Parisi, Castiglioncello, Italy. Surrounded by love, laughter, and all the people who matter most.",
-    image: couplePhoto,
-    position: "right",
-  },
-];
 
 const TimelineItem = ({ event, index }: { event: TimelineEvent; index: number }) => {
   const ref = useRef(null);
@@ -163,6 +118,53 @@ const TimelineItem = ({ event, index }: { event: TimelineEvent; index: number })
 const TimelineSection = () => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
+  const { t } = useTranslation();
+
+  const timelineEvents: TimelineEvent[] = [
+    {
+      date: t("timeline.event1.date"),
+      title: t("timeline.event1.title"),
+      description: t("timeline.event1.desc"),
+      image: img0528,
+      position: "left",
+    },
+    {
+      date: t("timeline.event2.date"),
+      title: t("timeline.event2.title"),
+      description: t("timeline.event2.desc"),
+      image: img1868,
+      position: "right",
+    },
+    {
+      date: t("timeline.event3.date"),
+      title: t("timeline.event3.title"),
+      description: t("timeline.event3.desc"),
+      image: img7239,
+      position: "left",
+    },
+    {
+      date: t("timeline.event4.date"),
+      title: t("timeline.event4.title"),
+      description: t("timeline.event4.desc"),
+      image: img5385,
+      position: "right",
+      objectFit: "contain",
+    },
+    {
+      date: t("timeline.event5.date"),
+      title: t("timeline.event5.title"),
+      description: t("timeline.event5.desc"),
+      image: wePhoto,
+      position: "left",
+    },
+    {
+      date: t("timeline.event6.date"),
+      title: t("timeline.event6.title"),
+      description: t("timeline.event6.desc"),
+      image: couplePhoto,
+      position: "right",
+    },
+  ];
 
   // Generate straight path dynamically
   const generateStraightPath = () => {
@@ -204,10 +206,10 @@ const TimelineSection = () => {
         >
           <p className="decorative-flourish mb-4">♥</p>
           <h2 className="font-serif text-4xl md:text-5xl font-light text-foreground mb-4">
-            Our Journey Together
+            {t("timeline.title")}
           </h2>
           <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
-            Every love story is beautiful, but ours is our favorite
+            {t("timeline.subtitle")}
           </p>
           <div className="decorative-line mt-6" />
         </motion.div>

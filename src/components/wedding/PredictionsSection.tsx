@@ -2,6 +2,7 @@ import { motion } from "framer-motion";
 import { useInView } from "framer-motion";
 import { useRef, useState } from "react";
 import { useToast } from "@/hooks/use-toast";
+import { useTranslation } from "@/i18n/LanguageContext";
 
 // Replace with your Google Apps Script deployment URL for predictions
 const PREDICTIONS_URL = 'https://script.google.com/macros/s/AKfycbwQBwMxSt7ZFJgXkqMdezNbxDDQRJ7m_uW-4CWL9zfvfyNMVzI5kgB30fTxIfwUKLYX/exec';
@@ -55,6 +56,7 @@ const PredictionsSection = ({ guestName }: PredictionsSectionProps) => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
   const { toast } = useToast();
+  const { t } = useTranslation();
 
   const [formData, setFormData] = useState({
     criesFirst: "",
@@ -91,8 +93,8 @@ const PredictionsSection = ({ guestName }: PredictionsSectionProps) => {
       });
 
       toast({
-        title: "Predictions Recorded!",
-        description: "We'll see how accurate you are!",
+        title: t("predictions.successTitle"),
+        description: t("predictions.successDesc"),
       });
       setFormData({
         criesFirst: "",
@@ -104,8 +106,8 @@ const PredictionsSection = ({ guestName }: PredictionsSectionProps) => {
       });
     } catch (error) {
       toast({
-        title: "Submission Failed",
-        description: "Please try again later.",
+        title: t("shared.submissionFailed"),
+        description: t("shared.tryAgainLater"),
         variant: "destructive",
       });
     } finally {
@@ -131,11 +133,11 @@ const PredictionsSection = ({ guestName }: PredictionsSectionProps) => {
         >
           <p className="decorative-flourish mb-4">✨</p>
           <h2 className="font-serif text-4xl md:text-5xl font-light text-foreground mb-4">
-            Predictions Poll
+            {t("predictions.title")}
           </h2>
           <div className="decorative-line mb-6" />
           <p className="text-muted-foreground font-light">
-            Make your predictions about Bogdan & Corina!
+            {t("predictions.subtitle")}
           </p>
         </motion.div>
 
@@ -148,7 +150,7 @@ const PredictionsSection = ({ guestName }: PredictionsSectionProps) => {
         >
 
           <PollQuestion
-            question="Who will cry first during the ceremony?"
+            question={t("predictions.q1")}
             name="criesFirst"
             option1="Bogdan"
             option2="Corina"
@@ -157,7 +159,7 @@ const PredictionsSection = ({ guestName }: PredictionsSectionProps) => {
           />
 
           <PollQuestion
-            question="Who's the better dancer?"
+            question={t("predictions.q2")}
             name="betterDancer"
             option1="Bogdan"
             option2="Corina"
@@ -166,7 +168,7 @@ const PredictionsSection = ({ guestName }: PredictionsSectionProps) => {
           />
 
           <PollQuestion
-            question="Who wakes up earlier?"
+            question={t("predictions.q3")}
             name="wakesEarlier"
             option1="Bogdan"
             option2="Corina"
@@ -175,7 +177,7 @@ const PredictionsSection = ({ guestName }: PredictionsSectionProps) => {
           />
 
           <PollQuestion
-            question="Who's the better cook?"
+            question={t("predictions.q4")}
             name="betterCook"
             option1="Bogdan"
             option2="Corina"
@@ -184,7 +186,7 @@ const PredictionsSection = ({ guestName }: PredictionsSectionProps) => {
           />
 
           <PollQuestion
-            question="Who's more romantic?"
+            question={t("predictions.q5")}
             name="moreRomantic"
             option1="Bogdan"
             option2="Corina"
@@ -193,7 +195,7 @@ const PredictionsSection = ({ guestName }: PredictionsSectionProps) => {
           />
 
           <PollQuestion
-            question="Who says 'I love you' first each day?"
+            question={t("predictions.q6")}
             name="saysILoveYouFirst"
             option1="Bogdan"
             option2="Corina"
@@ -207,7 +209,7 @@ const PredictionsSection = ({ guestName }: PredictionsSectionProps) => {
               disabled={isSubmitting || !guestName}
               className="w-full py-4 bg-primary text-primary-foreground font-sans text-base tracking-widest uppercase hover:bg-primary/90 transition-colors duration-300 disabled:opacity-50 disabled:cursor-not-allowed shadow-lg"
             >
-              {isSubmitting ? 'Submitting...' : !guestName ? 'Enter Your Name Above First' : 'Submit Predictions'}
+              {isSubmitting ? t("predictions.submitting") : !guestName ? t("predictions.enterName") : t("predictions.submit")}
             </button>
           </div>
         </motion.form>

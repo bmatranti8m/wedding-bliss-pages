@@ -3,6 +3,7 @@ import { useInView } from "framer-motion";
 import { useRef, useState } from "react";
 import { useToast } from "@/hooks/use-toast";
 import { Link } from "react-router-dom";
+import { useTranslation } from "@/i18n/LanguageContext";
 
 // Google Apps Script deployment URL
 const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzlIYl8HPJkqdkc93QollHkpBAZj-q8IMM5H0KOfS3o7P2-rjG-NlXFbs60nReY8lr9Ww/exec';
@@ -11,6 +12,7 @@ const RSVPSection = () => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
   const { toast } = useToast();
+  const { t } = useTranslation();
 
   const [formData, setFormData] = useState({
     name: "",
@@ -46,8 +48,8 @@ const RSVPSection = () => {
 
       setSubmitted(true);
       toast({
-        title: "RSVP Received!",
-        description: "Thank you for responding. We can't wait to celebrate with you!",
+        title: t("rsvp.successTitle"),
+        description: t("rsvp.successDesc"),
       });
       setFormData({
         name: "",
@@ -58,8 +60,8 @@ const RSVPSection = () => {
       });
     } catch (error) {
       toast({
-        title: "Submission Failed",
-        description: "Please try again or contact us directly.",
+        title: t("rsvp.errorTitle"),
+        description: t("rsvp.errorDesc"),
         variant: "destructive",
       });
     } finally {
@@ -87,11 +89,11 @@ const RSVPSection = () => {
         >
           <p className="decorative-flourish mb-4">✉</p>
           <h2 className="font-serif text-4xl md:text-5xl font-light text-foreground mb-4">
-            RSVP
+            {t("rsvp.title")}
           </h2>
           <div className="decorative-line mb-6" />
           <p className="text-muted-foreground font-light">
-            Please respond by May 16, 2026
+            {t("rsvp.deadline")}
           </p>
         </motion.div>
 
@@ -107,7 +109,7 @@ const RSVPSection = () => {
               htmlFor="name"
               className="block text-sm uppercase tracking-widest text-primary mb-2 font-sans font-semibold"
             >
-              Full Name
+              {t("rsvp.fullName")}
             </label>
             <input
               type="text"
@@ -125,7 +127,7 @@ const RSVPSection = () => {
               htmlFor="email"
               className="block text-sm uppercase tracking-widest text-primary mb-2 font-sans font-semibold"
             >
-              Email Address
+              {t("rsvp.email")}
             </label>
             <input
               type="email"
@@ -143,7 +145,7 @@ const RSVPSection = () => {
               htmlFor="phone"
               className="block text-sm uppercase tracking-widest text-primary mb-2 font-sans font-semibold"
             >
-              Phone Number
+              {t("rsvp.phone")}
             </label>
             <input
               type="tel"
@@ -158,7 +160,7 @@ const RSVPSection = () => {
 
           <div>
             <label className="block text-sm uppercase tracking-widest text-primary mb-4 font-sans font-semibold">
-              Will you be attending?
+              {t("rsvp.attending")}
             </label>
             <div className="space-y-3">
               <label className="flex items-center p-4 bg-white border border-gray-300 cursor-pointer hover:border-primary transition-colors">
@@ -171,7 +173,7 @@ const RSVPSection = () => {
                   onChange={handleChange}
                   className="w-5 h-5 text-primary border-gray-300 focus:ring-primary mr-4"
                 />
-                <span className="text-primary font-sans text-base">Yes, I'll be there</span>
+                <span className="text-primary font-sans text-base">{t("rsvp.yes")}</span>
               </label>
               <label className="flex items-center p-4 bg-white border border-gray-300 cursor-pointer hover:border-primary transition-colors">
                 <input
@@ -183,7 +185,7 @@ const RSVPSection = () => {
                   onChange={handleChange}
                   className="w-5 h-5 text-primary border-gray-300 focus:ring-primary mr-4"
                 />
-                <span className="text-primary font-sans text-base">Sorry, I can't make it</span>
+                <span className="text-primary font-sans text-base">{t("rsvp.no")}</span>
               </label>
             </div>
           </div>
@@ -193,7 +195,7 @@ const RSVPSection = () => {
               htmlFor="essay"
               className="block text-sm uppercase tracking-widest text-primary mb-2 font-sans font-semibold"
             >
-              Message for the Couple {formData.attending === "no" ? "(Required)" : "(Optional)"}
+              {t("rsvp.messageLabel")} {formData.attending === "no" ? t("rsvp.required") : t("rsvp.optional")}
             </label>
             <textarea
               id="essay"
@@ -203,11 +205,11 @@ const RSVPSection = () => {
               minLength={formData.attending === "no" ? 200 : undefined}
               value={formData.essay}
               onChange={handleChange}
-              placeholder={formData.attending === "no" ? "Please let us know why you can't make it (minimum 200 characters)..." : "Share your thoughts, wishes, or special memories..."}
+              placeholder={formData.attending === "no" ? t("rsvp.declinePlaceholder") : t("rsvp.messagePlaceholder")}
               className="w-full px-4 py-3 bg-white border border-gray-300 focus:border-primary focus:outline-none transition-colors font-sans text-foreground resize-none"
             />
             {formData.attending === "no" && formData.essay.length > 0 && formData.essay.length < 200 && (
-              <p className="text-sm text-muted-foreground mt-1">{formData.essay.length}/200 characters</p>
+              <p className="text-sm text-muted-foreground mt-1">{formData.essay.length}{t("rsvp.charCount")}</p>
             )}
           </div>
 
@@ -217,7 +219,7 @@ const RSVPSection = () => {
               disabled={isSubmitting || !formData.attending}
               className="w-full py-4 bg-primary text-primary-foreground font-sans text-base tracking-widest uppercase hover:bg-primary/90 transition-colors duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
             >
-              {isSubmitting ? 'Submitting...' : 'Submit RSVP'}
+              {isSubmitting ? t("rsvp.submitting") : t("rsvp.submit")}
             </button>
           </div>
         </motion.form>
@@ -230,16 +232,16 @@ const RSVPSection = () => {
         >
           <div className="bg-gradient-to-r from-sage/20 via-rose/20 to-champagne/20 p-8 rounded-lg border border-primary/20">
             <p className="font-serif text-2xl text-foreground mb-2">
-              Want to do more?
+              {t("rsvp.wantMore")}
             </p>
             <p className="text-muted-foreground font-light mb-6">
-              Request songs, share advice, and make predictions!
+              {t("rsvp.wantMoreDesc")}
             </p>
             <Link
               to="/interactive"
               className="inline-block px-8 py-3 bg-secondary text-secondary-foreground font-sans text-sm tracking-widest uppercase hover:bg-secondary/90 transition-colors duration-300 shadow-md"
             >
-              Fun & Interactive →
+              {t("rsvp.funInteractive")}
             </Link>
           </div>
         </motion.div>

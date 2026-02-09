@@ -2,6 +2,7 @@ import { motion } from "framer-motion";
 import { useInView } from "framer-motion";
 import { useRef, useState } from "react";
 import { useToast } from "@/hooks/use-toast";
+import { useTranslation } from "@/i18n/LanguageContext";
 
 // Replace with your Google Apps Script deployment URL for song requests
 const SONG_REQUESTS_URL = 'https://script.google.com/macros/s/AKfycbwQBwMxSt7ZFJgXkqMdezNbxDDQRJ7m_uW-4CWL9zfvfyNMVzI5kgB30fTxIfwUKLYX/exec';
@@ -14,6 +15,7 @@ const SongRequestsSection = ({ guestName }: SongRequestsSectionProps) => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
   const { toast } = useToast();
+  const { t } = useTranslation();
 
   const [formData, setFormData] = useState({
     songTitle: "",
@@ -44,8 +46,8 @@ const SongRequestsSection = ({ guestName }: SongRequestsSectionProps) => {
       });
 
       toast({
-        title: "Song Added!",
-        description: "Thanks for the request. We can't wait to dance to it!",
+        title: t("songs.successTitle"),
+        description: t("songs.successDesc"),
       });
       setFormData({
         songTitle: "",
@@ -54,8 +56,8 @@ const SongRequestsSection = ({ guestName }: SongRequestsSectionProps) => {
       });
     } catch (error) {
       toast({
-        title: "Submission Failed",
-        description: "Please try again later.",
+        title: t("shared.submissionFailed"),
+        description: t("shared.tryAgainLater"),
         variant: "destructive",
       });
     } finally {
@@ -83,11 +85,11 @@ const SongRequestsSection = ({ guestName }: SongRequestsSectionProps) => {
         >
           <p className="decorative-flourish mb-4">♫</p>
           <h2 className="font-serif text-4xl md:text-5xl font-light text-foreground mb-4">
-            Song Requests
+            {t("songs.title")}
           </h2>
           <div className="decorative-line mb-6" />
           <p className="text-muted-foreground font-light">
-            Help us create the perfect playlist for our celebration!
+            {t("songs.subtitle")}
           </p>
         </motion.div>
 
@@ -104,7 +106,7 @@ const SongRequestsSection = ({ guestName }: SongRequestsSectionProps) => {
               htmlFor="songTitle"
               className="block text-sm uppercase tracking-widest text-primary mb-2 font-sans font-semibold"
             >
-              Song Title
+              {t("songs.songTitle")}
             </label>
             <input
               type="text"
@@ -113,7 +115,7 @@ const SongRequestsSection = ({ guestName }: SongRequestsSectionProps) => {
               required
               value={formData.songTitle}
               onChange={handleChange}
-              placeholder="Enter the song name"
+              placeholder={t("songs.songPlaceholder")}
               className="w-full px-4 py-3 bg-white border border-gray-300 focus:border-primary focus:outline-none transition-colors font-sans text-foreground"
             />
           </div>
@@ -123,7 +125,7 @@ const SongRequestsSection = ({ guestName }: SongRequestsSectionProps) => {
               htmlFor="artist"
               className="block text-sm uppercase tracking-widest text-primary mb-2 font-sans font-semibold"
             >
-              Artist
+              {t("songs.artist")}
             </label>
             <input
               type="text"
@@ -132,7 +134,7 @@ const SongRequestsSection = ({ guestName }: SongRequestsSectionProps) => {
               required
               value={formData.artist}
               onChange={handleChange}
-              placeholder="Who performs this song?"
+              placeholder={t("songs.artistPlaceholder")}
               className="w-full px-4 py-3 bg-white border border-gray-300 focus:border-primary focus:outline-none transition-colors font-sans text-foreground"
             />
           </div>
@@ -142,7 +144,7 @@ const SongRequestsSection = ({ guestName }: SongRequestsSectionProps) => {
               htmlFor="specialReason"
               className="block text-sm uppercase tracking-widest text-primary mb-2 font-sans font-semibold"
             >
-              Why This Song? (Optional)
+              {t("songs.whyLabel")}
             </label>
             <textarea
               id="specialReason"
@@ -150,7 +152,7 @@ const SongRequestsSection = ({ guestName }: SongRequestsSectionProps) => {
               rows={3}
               value={formData.specialReason}
               onChange={handleChange}
-              placeholder="Tell us why this song is special..."
+              placeholder={t("songs.whyPlaceholder")}
               className="w-full px-4 py-3 bg-white border border-gray-300 focus:border-primary focus:outline-none transition-colors font-sans text-foreground resize-none"
             />
           </div>
@@ -161,7 +163,7 @@ const SongRequestsSection = ({ guestName }: SongRequestsSectionProps) => {
               disabled={isSubmitting || !guestName}
               className="w-full py-4 bg-primary text-primary-foreground font-sans text-base tracking-widest uppercase hover:bg-primary/90 transition-colors duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
             >
-              {isSubmitting ? 'Adding Song...' : !guestName ? 'Enter Your Name Above First' : 'Add Song Request'}
+              {isSubmitting ? t("songs.submitting") : !guestName ? t("songs.enterName") : t("songs.submit")}
             </button>
           </div>
         </motion.form>

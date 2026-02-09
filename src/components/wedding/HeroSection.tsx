@@ -1,7 +1,10 @@
 import { motion } from "framer-motion";
 import couplePhoto from "@/assets/couple-photo.jpg";
+import { useTranslation } from "@/i18n/LanguageContext";
 
 const HeroSection = () => {
+  const { t } = useTranslation();
+
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
       {/* Background Image */}
@@ -21,7 +24,7 @@ const HeroSection = () => {
           transition={{ duration: 0.8, delay: 0.2 }}
           className="text-sm md:text-base tracking-[0.3em] uppercase text-white mb-6 font-sans font-light drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)]"
         >
-          We're Getting Married
+          {t("hero.gettingMarried")}
         </motion.p>
 
         <motion.h1
@@ -46,7 +49,7 @@ const HeroSection = () => {
           transition={{ duration: 0.8, delay: 1 }}
           className="font-serif text-2xl md:text-3xl text-white font-light drop-shadow-[0_2px_6px_rgba(0,0,0,0.8)]"
         >
-          June 16, 2026
+          {t("hero.date")}
         </motion.p>
 
         <motion.p
@@ -55,7 +58,7 @@ const HeroSection = () => {
           transition={{ duration: 0.8, delay: 1.2 }}
           className="text-white mt-4 font-sans font-light tracking-wide drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)]"
         >
-          Grand Hotel Villa Parisi • Castiglioncello, Tuscany
+          {t("hero.venue")}
         </motion.p>
       </div>
 
@@ -150,7 +153,7 @@ const HeroSection = () => {
             {/* Text centered in heart */}
             <div className="absolute inset-0 flex items-center justify-center pt-2">
               <span className="text-white font-sans text-sm tracking-widest uppercase font-medium">
-                RSVP
+                {t("hero.rsvp")}
               </span>
             </div>
           </motion.a>

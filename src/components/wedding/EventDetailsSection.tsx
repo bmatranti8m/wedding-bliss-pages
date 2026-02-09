@@ -3,28 +3,30 @@ import { useInView } from "framer-motion";
 import { useRef } from "react";
 import { MapPin, Clock, CalendarDays, Map, ArrowRight } from "lucide-react";
 import venueImage from "@/assets/venue.jpg";
+import { useTranslation } from "@/i18n/LanguageContext";
 
 const EventDetailsSection = () => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
+  const { t } = useTranslation();
 
   const events = [
     {
-      title: "The Ceremony",
-      time: "5:00 PM",
-      description: "Join us as we exchange our vows in an intimate outdoor ceremony surrounded by olive groves.",
+      title: t("details.ceremony.title"),
+      time: t("details.ceremony.time"),
+      description: t("details.ceremony.desc"),
       icon: CalendarDays,
     },
     {
-      title: "Cocktail Hour",
-      time: "5:30 PM",
-      description: "Enjoy craft cocktails and hors d'oeuvres while overlooking the stunning Tuscan hills.",
+      title: t("details.cocktail.title"),
+      time: t("details.cocktail.time"),
+      description: t("details.cocktail.desc"),
       icon: Clock,
     },
     {
-      title: "Reception & Dinner",
-      time: "8:00 PM",
-      description: "An evening of fine dining, heartfelt toasts, and dancing under the stars.",
+      title: t("details.reception.title"),
+      time: t("details.reception.time"),
+      description: t("details.reception.desc"),
       icon: MapPin,
     },
   ];
@@ -40,7 +42,7 @@ const EventDetailsSection = () => {
         >
           <p className="decorative-flourish mb-4">✦</p>
           <h2 className="font-serif text-4xl md:text-5xl font-light text-foreground mb-4">
-            Wedding Details
+            {t("details.title")}
           </h2>
           <div className="decorative-line" />
         </motion.div>
@@ -55,12 +57,12 @@ const EventDetailsSection = () => {
           <div className="relative overflow-hidden aspect-[21/9]">
             <img
               src={venueImage}
-              alt="Vineyard Estate Venue"
+              alt={t("details.venueAlt")}
               className="w-full h-full object-cover"
             />
             <div className="absolute bottom-8 left-8 text-white drop-shadow-[0_2px_4px_rgba(0,0,0,0.9)]">
               <h3 className="font-serif text-3xl md:text-4xl font-light mb-2">
-                Grand Hotel Villa Parisi
+                {t("details.venueName")}
               </h3>
               <div className="flex flex-col gap-3">
                 <motion.a
@@ -79,7 +81,7 @@ const EventDetailsSection = () => {
                   }}
                 >
                   <div className="flex items-center gap-2">
-                    <span className="text-foreground text-sm font-sans uppercase tracking-wide">Get me there</span>
+                    <span className="text-foreground text-sm font-sans uppercase tracking-wide">{t("details.getDirections")}</span>
                     <ArrowRight className="w-4 h-4 text-foreground group-hover:translate-x-1 transition-transform" />
                   </div>
                   <div className="w-px h-5 bg-gray-300" />

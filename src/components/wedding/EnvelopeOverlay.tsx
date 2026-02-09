@@ -3,12 +3,14 @@ import { motion, AnimatePresence } from "framer-motion";
 import envelopeImage from "@/assets/envelope.png";
 import oceanVideo from "@/assets/ocean.mp4";
 import wavesAudio from "@/assets/waves.mp3";
+import { useTranslation } from "@/i18n/LanguageContext";
 
 const EnvelopeOverlay = () => {
   const [isVisible, setIsVisible] = useState(true);
   const [audioPlaying, setAudioPlaying] = useState(false);
   const [audioKey, setAudioKey] = useState(0);
   const audioRef = useRef<HTMLAudioElement>(null);
+  const { t } = useTranslation();
 
   useEffect(() => {
     // Reset state on mount and force audio element recreation
@@ -123,7 +125,7 @@ const EnvelopeOverlay = () => {
             className="absolute bottom-12 text-center z-10"
           >
             <p className="text-sm md:text-base tracking-[0.3em] uppercase text-white font-sans font-light drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)]">
-              {audioPlaying ? "Tap to open" : "Tap to start"}
+              {audioPlaying ? t("envelope.tapToOpen") : t("envelope.tapToStart")}
             </p>
           </motion.div>
         </motion.div>
