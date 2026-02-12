@@ -1,12 +1,13 @@
 import { useState, useRef, useEffect, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import envelopeImage from "@/assets/envelope.png";
+import envelopeImage from "@/assets/envelope.webp";
 import oceanVideo from "@/assets/ocean.mp4";
 import wavesAudio from "@/assets/waves.mp3";
 import { useTranslation } from "@/i18n/LanguageContext";
 
 const EnvelopeOverlay = () => {
   const [isVisible, setIsVisible] = useState(true);
+  const [isOpening, setIsOpening] = useState(false);
   const [audioPlaying, setAudioPlaying] = useState(false);
   const [audioKey, setAudioKey] = useState(0);
   const audioRef = useRef<HTMLAudioElement>(null);
@@ -45,12 +46,17 @@ const EnvelopeOverlay = () => {
   }, [audioPlaying]);
 
   const handleClick = useCallback(() => {
-    if (audioRef.current) {
-      audioRef.current.pause();
-      audioRef.current.currentTime = 0;
-    }
-    setIsVisible(false);
-  }, []);
+    if (isOpening) return;
+    setIsOpening(true);
+    // Play opening animation, then dismiss
+    setTimeout(() => {
+      if (audioRef.current) {
+        audioRef.current.pause();
+        audioRef.current.currentTime = 0;
+      }
+      setIsVisible(false);
+    }, 800);
+  }, [isOpening]);
 
   const handleKeyDown = useCallback((e: React.KeyboardEvent) => {
     if (e.key === "Enter" || e.key === " ") {
@@ -100,10 +106,17 @@ const EnvelopeOverlay = () => {
             alt={t("envelope.tapToOpen")}
             className="relative z-10 max-w-[60%] max-h-[60vh] object-contain"
             initial={{ scale: 0.95, opacity: 0 }}
-            animate={{ scale: 1, opacity: 1 }}
-            transition={{ duration: 0.8, ease: "easeOut" }}
-            whileHover={{ scale: 1.02 }}
-            whileTap={{ scale: 0.98 }}
+            animate={isOpening
+              ? { scale: 1.15, opacity: 0, rotateX: -30, y: -40 }
+              : { scale: 1, opacity: 1 }
+            }
+            transition={isOpening
+              ? { duration: 0.8, ease: "easeInOut" }
+              : { duration: 0.8, ease: "easeOut" }
+            }
+            whileHover={!isOpening ? { scale: 1.02 } : undefined}
+            whileTap={!isOpening ? { scale: 0.98 } : undefined}
+            style={{ perspective: 800 }}
           />
 
           {/* Tap hint */}

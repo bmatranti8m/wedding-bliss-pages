@@ -2,12 +2,15 @@ import { useState, useEffect } from "react";
 import HeroSection from "@/components/wedding/HeroSection";
 import OurStorySection from "@/components/wedding/OurStorySection";
 import TimelineSection from "@/components/wedding/TimelineSection";
+import GallerySection from "@/components/wedding/GallerySection";
 import EventDetailsSection from "@/components/wedding/EventDetailsSection";
+import TravelSection from "@/components/wedding/TravelSection";
 import CountdownSection from "@/components/wedding/CountdownSection";
 import RSVPSection from "@/components/wedding/RSVPSection";
 import FooterSection from "@/components/wedding/FooterSection";
 import EnvelopeOverlay from "@/components/wedding/EnvelopeOverlay";
 import SectionNav from "@/components/wedding/SectionNav";
+import MusicToggle from "@/components/wedding/MusicToggle";
 
 const Index = () => {
   const [overlayKey, setOverlayKey] = useState(0);
@@ -21,11 +24,14 @@ const Index = () => {
     <main id="main-content" className="min-h-screen bg-background">
       <EnvelopeOverlay key={overlayKey} />
       <SectionNav />
+      <MusicToggle />
       <HeroSection />
       <OurStorySection />
       <TimelineSection />
+      <GallerySection />
       <CountdownSection />
       <EventDetailsSection />
+      <TravelSection />
       <RSVPSection />
       <FooterSection />
     </main>

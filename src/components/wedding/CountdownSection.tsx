@@ -1,6 +1,5 @@
-import { motion } from "framer-motion";
-import { useInView } from "framer-motion";
-import { useRef, useState, useEffect } from "react";
+import { motion, useInView } from "framer-motion";
+import { useRef, useState, useEffect, useMemo } from "react";
 import { useTranslation } from "@/i18n/LanguageContext";
 
 const CountdownSection = () => {
@@ -29,6 +28,8 @@ const CountdownSection = () => {
           minutes: Math.floor((difference / 1000 / 60) % 60),
           seconds: Math.floor((difference / 1000) % 60),
         });
+      } else {
+        setTimeLeft({ days: 0, hours: 0, minutes: 0, seconds: 0 });
       }
     };
 
@@ -36,6 +37,19 @@ const CountdownSection = () => {
     const timer = setInterval(calculateTimeLeft, 1000);
     return () => clearInterval(timer);
   }, []);
+
+  const isZero = timeLeft.days === 0 && timeLeft.hours === 0 && timeLeft.minutes === 0 && timeLeft.seconds === 0 && new Date() >= weddingDate;
+
+  const confettiPieces = useMemo(() =>
+    Array.from({ length: 50 }, (_, i) => ({
+      id: i,
+      x: Math.random() * 100,
+      delay: Math.random() * 3,
+      duration: 2 + Math.random() * 3,
+      color: ["hsl(350,30%,65%)", "hsl(140,20%,70%)", "hsl(38,50%,70%)", "#fff"][Math.floor(Math.random() * 4)],
+      size: 4 + Math.random() * 8,
+    })),
+  []);
 
   const timeUnits = [
     { label: t("countdown.days"), value: timeLeft.days },
@@ -45,8 +59,22 @@ const CountdownSection = () => {
   ];
 
   return (
-    <section ref={ref} id="countdown" className="section-padding gradient-sage">
-      <div className="max-w-4xl mx-auto text-center">
+    <section ref={ref} id="countdown" className="section-padding gradient-sage relative overflow-hidden">
+      {isZero && confettiPieces.map((piece) => (
+        <motion.div
+          key={piece.id}
+          className="absolute top-0 rounded-sm pointer-events-none"
+          style={{
+            left: `${piece.x}%`,
+            width: piece.size,
+            height: piece.size,
+            backgroundColor: piece.color,
+          }}
+          animate={{ y: ["0vh", "100vh"], rotate: [0, 360 * (Math.random() > 0.5 ? 1 : -1)] }}
+          transition={{ duration: piece.duration, delay: piece.delay, repeat: Infinity, ease: "linear" }}
+        />
+      ))}
+      <div className="max-w-4xl mx-auto text-center relative z-10">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}

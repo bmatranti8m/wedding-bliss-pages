@@ -5,8 +5,10 @@ const sections = [
   { id: "hero", labelKey: "hero.rsvp" },
   { id: "story", labelKey: "story.title" },
   { id: "timeline", labelKey: "timeline.title" },
+  { id: "gallery", labelKey: "gallery.title" },
   { id: "countdown", labelKey: "countdown.title" },
   { id: "details", labelKey: "details.title" },
+  { id: "travel", labelKey: "travel.title" },
   { id: "rsvp", labelKey: "rsvp.title" },
 ];
 

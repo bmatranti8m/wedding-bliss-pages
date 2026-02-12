@@ -1,8 +1,8 @@
 import { motion } from "framer-motion";
 import { useInView } from "framer-motion";
 import { useRef } from "react";
-import { MapPin, Clock, CalendarDays, Map, ArrowRight } from "lucide-react";
-import venueImage from "@/assets/venue.jpg";
+import { MapPin, Clock, CalendarDays, Map, ArrowRight, Shirt } from "lucide-react";
+import venueImage from "@/assets/venue.webp";
 import { useTranslation } from "@/i18n/LanguageContext";
 
 const EventDetailsSection = () => {
@@ -94,7 +94,7 @@ const EventDetailsSection = () => {
         </motion.div>
 
         {/* Event Cards */}
-        <div className="grid md:grid-cols-3 gap-8">
+        <div className="grid md:grid-cols-3 gap-8 mb-12">
           {events.map((event, index) => (
             <motion.div
               key={event.title}
@@ -114,6 +114,23 @@ const EventDetailsSection = () => {
             </motion.div>
           ))}
         </div>
+
+        {/* Dress Code */}
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.8, delay: 0.6 }}
+          className="text-center p-8 bg-card border border-border max-w-lg mx-auto"
+        >
+          <Shirt className="w-8 h-8 text-primary mx-auto mb-4" />
+          <h3 className="font-serif text-2xl text-foreground mb-2">
+            {t("details.dressCode")}
+          </h3>
+          <p className="text-primary font-serif text-xl mb-4">{t("details.dressCodeValue")}</p>
+          <p className="text-muted-foreground font-light text-sm leading-relaxed">
+            {t("details.dressCodeDesc")}
+          </p>
+        </motion.div>
       </div>
     </section>
   );

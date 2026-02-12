@@ -19,6 +19,8 @@ const RSVPSection = () => {
     email: "",
     phone: "",
     attending: "",
+    numberOfGuests: "1",
+    dietaryRestrictions: "",
     essay: "",
   });
 
@@ -36,6 +38,8 @@ const RSVPSection = () => {
       params.append('email', formData.email);
       params.append('phone', formData.phone);
       params.append('attending', formData.attending);
+      params.append('numberOfGuests', formData.numberOfGuests);
+      params.append('dietaryRestrictions', formData.dietaryRestrictions || '');
       params.append('essay', formData.essay || '');
       params.append('timestamp', timestamp);
 
@@ -56,6 +60,8 @@ const RSVPSection = () => {
         email: "",
         phone: "",
         attending: "",
+        numberOfGuests: "1",
+        dietaryRestrictions: "",
         essay: "",
       });
     } catch (error) {
@@ -189,6 +195,48 @@ const RSVPSection = () => {
               </label>
             </div>
           </div>
+
+          {formData.attending === "yes" && (
+            <>
+              <div>
+                <label
+                  htmlFor="numberOfGuests"
+                  className="block text-sm uppercase tracking-widest text-primary mb-2 font-sans font-semibold"
+                >
+                  {t("rsvp.numberOfGuests")}
+                </label>
+                <select
+                  id="numberOfGuests"
+                  name="numberOfGuests"
+                  value={formData.numberOfGuests}
+                  onChange={handleChange}
+                  className="w-full px-4 py-3 bg-white border border-gray-300 focus:border-primary focus:outline-none transition-colors font-sans text-foreground"
+                >
+                  {[1, 2, 3, 4, 5].map(n => (
+                    <option key={n} value={String(n)}>{n}</option>
+                  ))}
+                </select>
+              </div>
+
+              <div>
+                <label
+                  htmlFor="dietaryRestrictions"
+                  className="block text-sm uppercase tracking-widest text-primary mb-2 font-sans font-semibold"
+                >
+                  {t("rsvp.dietaryRestrictions")} {t("rsvp.optional")}
+                </label>
+                <input
+                  type="text"
+                  id="dietaryRestrictions"
+                  name="dietaryRestrictions"
+                  value={formData.dietaryRestrictions}
+                  onChange={handleChange}
+                  placeholder={t("rsvp.dietaryPlaceholder")}
+                  className="w-full px-4 py-3 bg-white border border-gray-300 focus:border-primary focus:outline-none transition-colors font-sans text-foreground"
+                />
+              </div>
+            </>
+          )}
 
           <div>
             <label

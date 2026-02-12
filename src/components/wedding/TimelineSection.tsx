@@ -1,12 +1,12 @@
 import { motion } from "framer-motion";
 import { useInView } from "framer-motion";
 import { useRef } from "react";
-import img0528 from "@/assets/IMG_0528.jpg";
-import img1868 from "@/assets/IMG_1868.jpg";
-import img7239 from "@/assets/IMG_7239.jpg";
-import wePhoto from "@/assets/we.png";
-import img5385 from "@/assets/IMG_5385.jpg";
-import couplePhoto from "@/assets/couple-photo.jpg";
+import img0528 from "@/assets/IMG_0528.webp";
+import img1868 from "@/assets/IMG_1868.webp";
+import img7239 from "@/assets/IMG_7239.webp";
+import wePhoto from "@/assets/we.webp";
+import img5385 from "@/assets/IMG_5385.webp";
+import couplePhoto from "@/assets/couple-photo.webp";
 import { useTranslation } from "@/i18n/LanguageContext";
 
 interface TimelineEvent {

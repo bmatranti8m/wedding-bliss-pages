@@ -1,6 +1,28 @@
 import { motion } from "framer-motion";
-import couplePhoto from "@/assets/couple-photo.jpg";
+import { CalendarPlus } from "lucide-react";
+import couplePhoto from "@/assets/couple-photo.webp";
 import { useTranslation } from "@/i18n/LanguageContext";
+
+const generateICS = () => {
+  const ics = `BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//Bogdan & Corina Wedding//EN
+BEGIN:VEVENT
+DTSTART:20260616T170000
+DTEND:20260617T010000
+SUMMARY:Bogdan & Corina Wedding
+LOCATION:Grand Hotel Villa Parisi, Via Romolo Monti 10, Castiglioncello, Italy
+DESCRIPTION:Join us for our wedding celebration in Tuscany!
+END:VEVENT
+END:VCALENDAR`;
+  const blob = new Blob([ics], { type: "text/calendar;charset=utf-8" });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement("a");
+  a.href = url;
+  a.download = "bogdan-corina-wedding.ics";
+  a.click();
+  URL.revokeObjectURL(url);
+};
 
 const HeroSection = () => {
   const { t } = useTranslation();
@@ -60,6 +82,17 @@ const HeroSection = () => {
         >
           {t("hero.venue")}
         </motion.p>
+
+        <motion.button
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 1.4 }}
+          onClick={generateICS}
+          className="mt-6 inline-flex items-center gap-2 px-6 py-2 bg-white/20 backdrop-blur-sm border border-white/30 text-white font-sans text-sm tracking-wider uppercase hover:bg-white/30 transition-colors rounded-full"
+        >
+          <CalendarPlus className="w-4 h-4" />
+          {t("hero.saveTheDate")}
+        </motion.button>
       </div>
 
       {/* RSVP Button - Heart Shape */}

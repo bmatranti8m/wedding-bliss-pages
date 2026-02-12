@@ -541,6 +541,108 @@ export const translations: Record<string, { en: string; ro: string }> = {
     ro: "Vă rugăm să încercați din nou mai târziu.",
   },
 
+  // ==================== GallerySection ====================
+  "gallery.title": {
+    en: "Our Moments",
+    ro: "Momentele noastre",
+  },
+  "gallery.subtitle": {
+    en: "A glimpse into our journey together",
+    ro: "O privire în călătoria noastră împreună",
+  },
+
+  // ==================== TravelSection ====================
+  "travel.title": {
+    en: "Getting There",
+    ro: "Cum ajungi",
+  },
+  "travel.subtitle": {
+    en: "Everything you need to know for your trip to Tuscany",
+    ro: "Tot ce trebuie să știi pentru călătoria ta în Toscana",
+  },
+  "travel.airport.title": {
+    en: "Nearest Airport",
+    ro: "Cel mai apropiat aeroport",
+  },
+  "travel.airport.desc": {
+    en: "Pisa International Airport (PSA) is about 1 hour drive from the venue. Florence Airport (FLR) is about 1.5 hours away.",
+    ro: "Aeroportul Internațional Pisa (PSA) este la aproximativ 1 oră cu mașina de locație. Aeroportul Florența (FLR) este la aproximativ 1,5 ore distanță.",
+  },
+  "travel.transport.title": {
+    en: "Getting Around",
+    ro: "Transport",
+  },
+  "travel.transport.desc": {
+    en: "We recommend renting a car to explore Tuscany. The venue is also accessible by train to Castiglioncello station.",
+    ro: "Recomandăm închirierea unei mașini pentru a explora Toscana. Locația este accesibilă și cu trenul, stația Castiglioncello.",
+  },
+  "travel.stay.title": {
+    en: "Where to Stay",
+    ro: "Cazare",
+  },
+  "travel.stay.desc": {
+    en: "The venue, Grand Hotel Villa Parisi, offers rooms for guests. Nearby alternatives include hotels in Castiglioncello and Rosignano Marittimo.",
+    ro: "Locația, Grand Hotel Villa Parisi, oferă camere pentru invitați. Alternative din apropiere includ hoteluri în Castiglioncello și Rosignano Marittimo.",
+  },
+  "travel.tip.title": {
+    en: "Pro Tips",
+    ro: "Sfaturi utile",
+  },
+  "travel.tip.desc": {
+    en: "June in Tuscany is warm (25-30°C). Bring sunscreen, comfortable shoes, and your dancing spirit!",
+    ro: "Iunie în Toscana este cald (25-30°C). Aduceți cremă de soare, pantofi comozi și spiritul de dans!",
+  },
+
+  // ==================== DressCode ====================
+  "details.dressCode": {
+    en: "Dress Code",
+    ro: "Cod vestimentar",
+  },
+  "details.dressCodeValue": {
+    en: "Smart Elegant",
+    ro: "Smart Elegant",
+  },
+  "details.dressCodeDesc": {
+    en: "Think cocktail attire with a touch of Italian flair. Light fabrics and soft colors are perfect for a Tuscan summer evening.",
+    ro: "Gândește-te la o ținută de cocktail cu o notă de eleganță italiană. Țesăturile ușoare și culorile moi sunt perfecte pentru o seară de vară toscană.",
+  },
+
+  // ==================== RSVP Extra Fields ====================
+  "rsvp.numberOfGuests": {
+    en: "Number of Guests (including yourself)",
+    ro: "Număr de invitați (inclusiv tu)",
+  },
+  "rsvp.dietaryRestrictions": {
+    en: "Dietary Restrictions",
+    ro: "Restricții alimentare",
+  },
+  "rsvp.dietaryPlaceholder": {
+    en: "Vegetarian, vegan, allergies, etc.",
+    ro: "Vegetarian, vegan, alergii, etc.",
+  },
+
+  // ==================== SaveTheDate ====================
+  "hero.saveTheDate": {
+    en: "Save the Date",
+    ro: "Salvează data",
+  },
+
+  // ==================== MusicToggle ====================
+  "music.play": {
+    en: "Play music",
+    ro: "Pornește muzica",
+  },
+  "music.pause": {
+    en: "Pause music",
+    ro: "Oprește muzica",
+  },
+
+  // ==================== QRCode ====================
+  "footer.scanToShare": {
+    en: "Scan to share with your +1",
+    ro: "Scanează pentru a distribui invitatului tău",
+  },
+
   // ==================== NotFound ====================
   "notFound.title": {
     en: "404",

@@ -4,6 +4,7 @@ import { useRef } from "react";
 import { Heart } from "lucide-react";
 import { Link, useLocation } from "react-router-dom";
 import { useTranslation } from "@/i18n/LanguageContext";
+import QRCode from "./QRCode";
 
 const FooterSection = () => {
   const ref = useRef(null);
@@ -64,7 +65,14 @@ const FooterSection = () => {
             </div>
           )}
 
-          <p className="mt-12 text-xs text-muted-foreground font-sans tracking-wider">
+          <div className="mt-10 flex flex-col items-center gap-2">
+            <QRCode url="https://corina-bogdan.github.io/" size={100} />
+            <p className="text-xs text-muted-foreground font-sans">
+              {t("footer.scanToShare")}
+            </p>
+          </div>
+
+          <p className="mt-8 text-xs text-muted-foreground font-sans tracking-wider">
             #BogdanAndCorinaForever
           </p>
         </motion.div>
