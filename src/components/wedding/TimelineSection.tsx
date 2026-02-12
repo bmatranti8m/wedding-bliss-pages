@@ -53,6 +53,7 @@ const TimelineItem = ({ event, index }: { event: TimelineEvent; index: number })
                 <img
                   src={event.image}
                   alt={event.title}
+                  loading="lazy"
                   className={`w-full h-full ${event.objectFit === "contain" ? "object-contain" : "object-cover"} transition-transform duration-700 group-hover:scale-110`}
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
@@ -103,6 +104,7 @@ const TimelineItem = ({ event, index }: { event: TimelineEvent; index: number })
                 <img
                   src={event.image}
                   alt={event.title}
+                  loading="lazy"
                   className={`w-full h-full ${event.objectFit === "contain" ? "object-contain" : "object-cover"} transition-transform duration-700 group-hover:scale-110`}
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
@@ -189,7 +191,7 @@ const TimelineSection = () => {
   const totalHeight = (timelineEvents.length - 1) * 520 + 300;
 
   return (
-    <section ref={ref} className="section-padding gradient-sage relative overflow-hidden">
+    <section ref={ref} id="timeline" className="section-padding gradient-sage relative overflow-hidden">
       {/* Background decorative elements */}
       <div className="absolute inset-0 opacity-5">
         <div className="absolute top-0 left-1/4 w-64 h-64 bg-primary rounded-full blur-3xl" />
@@ -218,6 +220,7 @@ const TimelineSection = () => {
         <div className="relative">
           {/* Straight dotted path connecting all pins */}
           <svg
+            aria-hidden="true"
             className="absolute left-1/2 top-0 -translate-x-1/2 w-[200px] h-full pointer-events-none"
             style={{ height: `${totalHeight}px` }}
             viewBox={`0 0 200 ${totalHeight}`}

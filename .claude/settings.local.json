@@ -10,7 +10,15 @@
       "Bash(ffmpeg:*)",
       "Bash(git add:*)",
       "Bash(git commit:*)",
-      "Bash(git push:*)"
+      "Bash(git push:*)",
+      "Bash(git mv:*)",
+      "Bash(npm run build:*)",
+      "Bash(npm run dev:*)",
+      "Bash(claude mcp add:*)",
+      "Bash(npm install:*)",
+      "Bash(node:*)",
+      "Bash(npx vite:*)",
+      "Bash(/tmp/verify-changes.mjs:*)"
     ]
   },
   "enableAllProjectMcpServers": true,

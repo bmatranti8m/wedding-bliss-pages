@@ -10,7 +10,7 @@ const OurStorySection = () => {
   const { t } = useTranslation();
 
   return (
-    <section ref={ref} className="section-padding gradient-rose">
+    <section ref={ref} id="story" className="section-padding gradient-rose">
       <div className="max-w-6xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
@@ -35,6 +35,7 @@ const OurStorySection = () => {
               <img
                 src={couplePhoto}
                 alt={t("story.imageAlt")}
+                loading="lazy"
                 className="w-full h-auto"
               />
             </div>

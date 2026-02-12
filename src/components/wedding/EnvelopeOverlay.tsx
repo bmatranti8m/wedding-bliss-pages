@@ -1,4 +1,4 @@
-import { useState, useRef, useEffect } from "react";
+import { useState, useRef, useEffect, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import envelopeImage from "@/assets/envelope.png";
 import oceanVideo from "@/assets/ocean.mp4";
@@ -13,28 +13,20 @@ const EnvelopeOverlay = () => {
   const { t } = useTranslation();
 
   useEffect(() => {
-    // Reset state on mount and force audio element recreation
     setIsVisible(true);
     setAudioPlaying(false);
-    setAudioKey(Date.now()); // Force new audio element
+    setAudioKey(Date.now());
 
-    // Small delay to ensure audio element is ready
     const timer = setTimeout(() => {
       if (audioRef.current) {
         audioRef.current.currentTime = 0;
-        audioRef.current.load(); // Force reload the audio
+        audioRef.current.load();
         audioRef.current.play()
-          .then(() => {
-            setAudioPlaying(true);
-          })
-          .catch((error) => {
-            // Autoplay blocked - will play on first interaction
-            console.log("Audio autoplay prevented:", error);
-          });
+          .then(() => setAudioPlaying(true))
+          .catch(() => {});
       }
     }, 100);
 
-    // Cleanup on unmount
     return () => {
       clearTimeout(timer);
       if (audioRef.current) {
@@ -44,35 +36,28 @@ const EnvelopeOverlay = () => {
     };
   }, []);
 
-  const startAudio = () => {
-    // Start audio on interaction if not already playing
+  const startAudio = useCallback(() => {
     if (audioRef.current && !audioPlaying) {
-      audioRef.current.currentTime = 0;
       audioRef.current.play()
-        .then(() => {
-          setAudioPlaying(true);
-        })
-        .catch((error) => {
-          console.log("Audio play failed:", error);
-        });
+        .then(() => setAudioPlaying(true))
+        .catch(() => {});
     }
-  };
+  }, [audioPlaying]);
 
-  const handleEnvelopeClick = () => {
-    // Try to start audio first if not playing
-    if (!audioPlaying) {
-      startAudio();
-      // Don't dismiss yet - wait for next click
-      return;
-    }
-
-    // Fade out and stop audio on second click
+  const handleClick = useCallback(() => {
     if (audioRef.current) {
       audioRef.current.pause();
       audioRef.current.currentTime = 0;
     }
     setIsVisible(false);
-  };
+  }, []);
+
+  const handleKeyDown = useCallback((e: React.KeyboardEvent) => {
+    if (e.key === "Enter" || e.key === " ") {
+      e.preventDefault();
+      handleClick();
+    }
+  }, [handleClick]);
 
   return (
     <AnimatePresence>
@@ -82,9 +67,13 @@ const EnvelopeOverlay = () => {
           exit={{ opacity: 0 }}
           transition={{ duration: 1.2, ease: "easeInOut" }}
           className="fixed inset-0 z-50 flex items-center justify-center cursor-pointer"
-          onClick={handleEnvelopeClick}
+          onClick={handleClick}
+          onKeyDown={handleKeyDown}
           onMouseEnter={startAudio}
           onTouchStart={startAudio}
+          role="button"
+          tabIndex={0}
+          aria-label={t("envelope.tapToOpen")}
         >
           {/* Waves Audio */}
           <audio key={audioKey} ref={audioRef} loop>
@@ -108,7 +97,7 @@ const EnvelopeOverlay = () => {
           {/* Envelope Image */}
           <motion.img
             src={envelopeImage}
-            alt="Click to open"
+            alt={t("envelope.tapToOpen")}
             className="relative z-10 max-w-[60%] max-h-[60vh] object-contain"
             initial={{ scale: 0.95, opacity: 0 }}
             animate={{ scale: 1, opacity: 1 }}
@@ -125,7 +114,7 @@ const EnvelopeOverlay = () => {
             className="absolute bottom-12 text-center z-10"
           >
             <p className="text-sm md:text-base tracking-[0.3em] uppercase text-white font-sans font-light drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)]">
-              {audioPlaying ? t("envelope.tapToOpen") : t("envelope.tapToStart")}
+              {t("envelope.tapToOpen")}
             </p>
           </motion.div>
         </motion.div>

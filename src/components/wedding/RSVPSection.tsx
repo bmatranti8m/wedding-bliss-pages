@@ -79,7 +79,7 @@ const RSVPSection = () => {
   };
 
   return (
-    <section ref={ref} id="rsvp" className="section-padding bg-background">
+    <section ref={ref} id="rsvp" className="py-16 md:py-24 px-6 md:px-12 bg-background">
       <div className="max-w-2xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
@@ -216,10 +216,10 @@ const RSVPSection = () => {
           <div className="text-center pt-4">
             <button
               type="submit"
-              disabled={isSubmitting || !formData.attending}
+              disabled={isSubmitting || submitted || !formData.attending}
               className="w-full py-4 bg-primary text-primary-foreground font-sans text-base tracking-widest uppercase hover:bg-primary/90 transition-colors duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
             >
-              {isSubmitting ? t("rsvp.submitting") : t("rsvp.submit")}
+              {submitted ? t("rsvp.successTitle") : isSubmitting ? t("rsvp.submitting") : t("rsvp.submit")}
             </button>
           </div>
         </motion.form>

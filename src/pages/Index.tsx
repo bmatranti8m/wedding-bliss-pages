@@ -7,6 +7,7 @@ import CountdownSection from "@/components/wedding/CountdownSection";
 import RSVPSection from "@/components/wedding/RSVPSection";
 import FooterSection from "@/components/wedding/FooterSection";
 import EnvelopeOverlay from "@/components/wedding/EnvelopeOverlay";
+import SectionNav from "@/components/wedding/SectionNav";
 
 const Index = () => {
   const [overlayKey, setOverlayKey] = useState(0);
@@ -17,8 +18,9 @@ const Index = () => {
   }, []);
 
   return (
-    <main className="min-h-screen bg-background">
+    <main id="main-content" className="min-h-screen bg-background">
       <EnvelopeOverlay key={overlayKey} />
+      <SectionNav />
       <HeroSection />
       <OurStorySection />
       <TimelineSection />

@@ -32,7 +32,7 @@ const EventDetailsSection = () => {
   ];
 
   return (
-    <section ref={ref} className="section-padding bg-background">
+    <section ref={ref} id="details" className="py-16 md:py-24 px-6 md:px-12 bg-background">
       <div className="max-w-6xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
@@ -58,6 +58,7 @@ const EventDetailsSection = () => {
             <img
               src={venueImage}
               alt={t("details.venueAlt")}
+              loading="lazy"
               className="w-full h-full object-cover"
             />
             <div className="absolute bottom-8 left-8 text-white drop-shadow-[0_2px_4px_rgba(0,0,0,0.9)]">

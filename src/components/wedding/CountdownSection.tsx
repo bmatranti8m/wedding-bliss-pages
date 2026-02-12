@@ -45,7 +45,7 @@ const CountdownSection = () => {
   ];
 
   return (
-    <section ref={ref} className="section-padding gradient-sage">
+    <section ref={ref} id="countdown" className="section-padding gradient-sage">
       <div className="max-w-4xl mx-auto text-center">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
