@@ -4,15 +4,36 @@ import useEmblaCarousel from "embla-carousel-react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { useTranslation } from "@/i18n/LanguageContext";
 
-import img0528 from "@/assets/IMG_0528.webp";
-import img1868 from "@/assets/IMG_1868.webp";
-import img7239 from "@/assets/IMG_7239.webp";
-import img5385 from "@/assets/IMG_5385.webp";
-import img7528 from "@/assets/IMG_7528.webp";
-import couplePhoto from "@/assets/couple-photo.webp";
-import wePhoto from "@/assets/we.webp";
+import img0423 from "@/assets/IMG_0423.webp";
+import img1092 from "@/assets/IMG_1092.webp";
+import img1344 from "@/assets/IMG_1344.webp";
+import img1360 from "@/assets/IMG_1360.webp";
+import img1830 from "@/assets/IMG_1830.webp";
+import img2250 from "@/assets/IMG_2250.webp";
+import img2770 from "@/assets/IMG_2770.webp";
+import img2879 from "@/assets/IMG_2879.webp";
+import img2954 from "@/assets/IMG_2954.webp";
+import img4615 from "@/assets/IMG_4615.webp";
+import img6063 from "@/assets/IMG_6063.webp";
+import img6360 from "@/assets/IMG_6360.webp";
+import img6519 from "@/assets/IMG_6519.webp";
+import img6796 from "@/assets/IMG_6796.webp";
+import img6964 from "@/assets/IMG_6964.webp";
+import img7250 from "@/assets/IMG_7250.webp";
+import img7303 from "@/assets/IMG_7303.webp";
+import img7529 from "@/assets/IMG_7529.webp";
+import img7944 from "@/assets/IMG_7944.webp";
+import img8397 from "@/assets/IMG_8397.webp";
+import img8586 from "@/assets/IMG_8586.webp";
+import img9035 from "@/assets/IMG_9035.webp";
+import img9414 from "@/assets/IMG_9414.webp";
 
-const images = [couplePhoto, img0528, img1868, img7239, img5385, img7528, wePhoto];
+const images = [
+  img0423, img1092, img1344, img1360, img1830, img2250, img2770,
+  img2879, img2954, img4615, img6063, img6360, img6519, img6796,
+  img6964, img7250, img7303, img7529, img7944, img8397, img8586,
+  img9035, img9414,
+];
 
 const GallerySection = () => {
   const ref = useRef(null);
@@ -64,7 +85,7 @@ const GallerySection = () => {
             <div className="flex">
               {images.map((src, i) => (
                 <div key={i} className="flex-[0_0_85%] md:flex-[0_0_60%] min-w-0 px-2">
-                  <div className="aspect-[4/3] overflow-hidden rounded-lg shadow-xl">
+                  <div className="aspect-[9/10] overflow-hidden rounded-lg shadow-xl">
                     <img
                       src={src}
                       alt={`Gallery photo ${i + 1}`}
