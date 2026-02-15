@@ -121,8 +121,8 @@ export const translations: Record<string, { en: string; ro: string }> = {
     ro: "Toamna 2025",
   },
   "timeline.event5.title": {
-    en: "Moving in Together",
-    ro: "Mutatul împreună",
+    en: "Moving to Switzerland",
+    ro: "Mutarea în Elveția",
   },
   "timeline.event5.desc": {
     en: "I cannot describe this feeling.",
