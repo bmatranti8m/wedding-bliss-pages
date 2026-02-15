@@ -200,6 +200,8 @@ const TimelineSection = () => {
       description: t("timeline.event1.desc"),
       images: [img0528],
       position: "left",
+      aspect: "aspect-[3/4]",
+      objectPosition: "center top",
     },
     {
       date: t("timeline.event2.date"),
@@ -234,6 +236,8 @@ const TimelineSection = () => {
       description: t("timeline.event5.desc"),
       images: [wePhoto],
       position: "left",
+      aspect: "aspect-[3/4]",
+      objectPosition: "center top",
     },
     {
       date: t("timeline.event6.date"),
@@ -241,30 +245,10 @@ const TimelineSection = () => {
       description: t("timeline.event6.desc"),
       images: [couplePhoto],
       position: "right",
+      aspect: "aspect-[3/4]",
+      objectPosition: "center top",
     },
   ];
-
-  // Generate straight path dynamically
-  const generateStraightPath = () => {
-    const center = 100; // Center X position
-    const startY = 40; // Starting Y position (first pin, adjusted for mobile)
-
-    // Calculate spacing based on actual layout
-    // Mobile: smaller elements, ~380px between pins
-    // Desktop: larger elements, ~520px between pins
-    const spacing = 520; // Desktop spacing (mobile handled by responsive margins)
-
-    // Calculate Y position of last pin
-    const lastPinY = startY + (timelineEvents.length - 1) * spacing;
-
-    // Heart is positioned after the last pin - stop at heart center
-    const finalY = lastPinY + 460;
-
-    // Simple straight line from first pin through all pins to heart
-    return `M ${center} ${startY} L ${center} ${finalY}`;
-  };
-
-  const totalHeight = timelineEvents.length * 520 + 300;
 
   return (
     <section ref={ref} id="timeline" className="section-padding gradient-sage relative overflow-hidden">
@@ -294,43 +278,37 @@ const TimelineSection = () => {
 
         {/* Timeline events */}
         <div className="relative">
-          {/* Straight dotted path connecting all pins */}
-          <svg
+          {/* Dotted line connecting all pins to heart */}
+          <motion.div
             aria-hidden="true"
-            className="absolute left-1/2 top-0 -translate-x-1/2 w-[200px] h-full pointer-events-none"
-            style={{ height: `${totalHeight}px` }}
-            viewBox={`0 0 200 ${totalHeight}`}
-            preserveAspectRatio="xMidYMin meet"
-          >
-            <motion.path
-              d={generateStraightPath()}
-              fill="none"
-              stroke="hsl(var(--primary))"
-              strokeWidth="3"
-              strokeDasharray="12 12"
-              strokeLinecap="round"
-              initial={{ pathLength: 0, opacity: 0 }}
-              animate={isInView ? { pathLength: 1, opacity: 0.6 } : {}}
-              transition={{ duration: 2, delay: 0.5, ease: "easeInOut" }}
-            />
-          </svg>
+            className="absolute left-1/2 top-0 bottom-0 -translate-x-1/2 w-[6px] pointer-events-none"
+            style={{
+              backgroundImage: "radial-gradient(circle, hsl(var(--primary)) 3px, transparent 3px)",
+              backgroundSize: "6px 24px",
+              backgroundPosition: "center top",
+              transformOrigin: "top",
+            }}
+            initial={{ scaleY: 0, opacity: 0 }}
+            animate={isInView ? { scaleY: 1, opacity: 0.6 } : {}}
+            transition={{ duration: 2, delay: 0.5, ease: "easeInOut" }}
+          />
 
           {timelineEvents.map((event, index) => (
             <TimelineItem key={index} event={event} index={index} />
           ))}
-        </div>
 
-        {/* End of timeline marker */}
-        <motion.div
-          initial={{ scale: 0, opacity: 0 }}
-          animate={isInView ? { scale: 1, opacity: 1 } : {}}
-          transition={{ duration: 0.5, delay: 1 }}
-          className="flex justify-center mt-10"
-        >
-          <div className="w-14 h-14 md:w-20 md:h-20 rounded-full bg-gradient-to-br from-primary to-accent border-2 md:border-4 border-white shadow-2xl flex items-center justify-center relative z-10">
-            <span className="text-xl md:text-2xl">💕</span>
-          </div>
-        </motion.div>
+          {/* End of timeline marker */}
+          <motion.div
+            initial={{ scale: 0, opacity: 0 }}
+            animate={isInView ? { scale: 1, opacity: 1 } : {}}
+            transition={{ duration: 0.5, delay: 1 }}
+            className="flex justify-center mt-10"
+          >
+            <div className="w-14 h-14 md:w-20 md:h-20 rounded-full bg-gradient-to-br from-primary to-accent border-2 md:border-4 border-white shadow-2xl flex items-center justify-center relative z-10">
+              <span className="text-xl md:text-2xl">💕</span>
+            </div>
+          </motion.div>
+        </div>
       </div>
     </section>
   );
