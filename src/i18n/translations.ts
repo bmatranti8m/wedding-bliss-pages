@@ -73,11 +73,11 @@ export const translations: Record<string, { en: string; ro: string }> = {
     ro: "Toamna 2023",
   },
   "timeline.event1.title": {
-    en: "First Meeting",
+    en: "How We Met",
     ro: "Prima întâlnire",
   },
   "timeline.event1.desc": {
-    en: "Corina was on vacation in Zurich, Switzerland, and they went on a hike together that changed everything.",
+    en: "Slowly but surely falling in love with each other while fighting for our life climbing Swiss mountains.",
     ro: "Corina era în vacanță la Zurich, Elveția, și au plecat împreună într-o drumeție care le-a schimbat totul.",
   },
   "timeline.event2.date": {
@@ -89,7 +89,7 @@ export const translations: Record<string, { en: string; ro: string }> = {
     ro: "Prima întâlnire romantică",
   },
   "timeline.event2.desc": {
-    en: "Bogdan visited Corina in Bucharest, and what started as a visit turned into the beginning of forever.",
+    en: "1st of December and the beginning of our journey together.",
     ro: "Bogdan a vizitat-o pe Corina la București, iar ceea ce a început ca o vizită s-a transformat în începutul veșniciei.",
   },
   "timeline.event3.date": {
@@ -101,7 +101,7 @@ export const translations: Record<string, { en: string; ro: string }> = {
     ro: "Prima călătorie împreună",
   },
   "timeline.event3.desc": {
-    en: "A romantic Valentine's Day getaway to Constanta, where they discovered their shared love for adventure.",
+    en: "A romantic Valentine's weekend trip to the seaside. Mid-February, yes. Sea is there on winter as well and she's even more beautiful.",
     ro: "O escapadă romantică de Valentine's Day la Constanța, unde au descoperit pasiunea lor comună pentru aventură.",
   },
   "timeline.event4.date": {
@@ -113,7 +113,7 @@ export const translations: Record<string, { en: string; ro: string }> = {
     ro: "Cererea în căsătorie",
   },
   "timeline.event4.desc": {
-    en: "During a helicopter ride over Miami Beach, with the stunning coastline below, he asked and she said yes.",
+    en: "A helicopter ride over Miami Beach. We wanted to catch the sunset, but we couldn't. And you know what, the full moon we didn't even know about was the unpaid actor for our story. Told you, the Universe loves us.",
     ro: "În timpul unui zbor cu elicopterul deasupra plajei din Miami, cu coasta uimitoare dedesubt, el a întrebat, iar ea a spus da.",
   },
   "timeline.event5.date": {
@@ -121,11 +121,11 @@ export const translations: Record<string, { en: string; ro: string }> = {
     ro: "Toamna 2025",
   },
   "timeline.event5.title": {
-    en: "Moving In Together",
+    en: "Moving in Together",
     ro: "Mutatul împreună",
   },
   "timeline.event5.desc": {
-    en: "After a long wait, Corina finally moved to Zurich, and they started building their life together.",
+    en: "I cannot describe this feeling.",
     ro: "După o lungă așteptare, Corina s-a mutat în sfârșit la Zurich, iar împreună au început să-și construiască viața.",
   },
   "timeline.event6.date": {
@@ -137,7 +137,7 @@ export const translations: Record<string, { en: string; ro: string }> = {
     ro: "Ziua nunții noastre",
   },
   "timeline.event6.desc": {
-    en: "Grand Hotel Villa Parisi, Castiglioncello, Italy. Surrounded by love, laughter, and all the people who matter most.",
+    en: "Day 1 of the rest of our life. We can't wait to celebrate with you.",
     ro: "Grand Hotel Villa Parisi, Castiglioncello, Italia. Înconjurați de dragoste, râsete și toți oamenii care contează cel mai mult.",
   },
 

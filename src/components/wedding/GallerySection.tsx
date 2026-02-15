@@ -35,11 +35,31 @@ const images = [
   img9035, img9414,
 ];
 
+function calculateSlideOffset(index: number, progress: number, totalSlides: number): number {
+  const rawOffset = index - progress * totalSlides;
+  // Handle loop wraparound: find the shortest distance
+  let offset = rawOffset % totalSlides;
+  if (offset > totalSlides / 2) offset -= totalSlides;
+  if (offset < -totalSlides / 2) offset += totalSlides;
+  return offset;
+}
+
+function getSlideTransform(offset: number) {
+  const absOffset = Math.abs(offset);
+  const rotateY = -offset * 45;
+  const scale = Math.max(0.4, 1 - absOffset * 0.2);
+  const opacity = Math.max(0.2, 1 - absOffset * 0.35);
+  const translateZ = -absOffset * 150;
+  const zIndex = 10 - Math.round(absOffset);
+  return { rotateY, scale, opacity, translateZ, zIndex };
+}
+
 const GallerySection = () => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
   const { t } = useTranslation();
   const [selectedIndex, setSelectedIndex] = useState(0);
+  const [scrollProgress, setScrollProgress] = useState(0);
 
   const [emblaRef, emblaApi] = useEmblaCarousel({
     loop: true,
@@ -52,8 +72,17 @@ const GallerySection = () => {
   useEffect(() => {
     if (!emblaApi) return;
     const onSelect = () => setSelectedIndex(emblaApi.selectedScrollSnap());
+    const onScroll = () => {
+      const progress = emblaApi.scrollProgress();
+      setScrollProgress(progress);
+    };
     emblaApi.on("select", onSelect);
-    return () => { emblaApi.off("select", onSelect); };
+    emblaApi.on("scroll", onScroll);
+    onScroll(); // initialize
+    return () => {
+      emblaApi.off("select", onSelect);
+      emblaApi.off("scroll", onScroll);
+    };
   }, [emblaApi]);
 
   return (
@@ -81,20 +110,32 @@ const GallerySection = () => {
           transition={{ duration: 0.8, delay: 0.2 }}
           className="relative"
         >
-          <div className="overflow-hidden rounded-lg" ref={emblaRef}>
-            <div className="flex">
-              {images.map((src, i) => (
-                <div key={i} className="flex-[0_0_85%] md:flex-[0_0_60%] min-w-0 px-2">
-                  <div className="aspect-[9/10] overflow-hidden rounded-lg shadow-xl">
-                    <img
-                      src={src}
-                      alt={`Gallery photo ${i + 1}`}
-                      loading="lazy"
-                      className="w-full h-full object-cover"
-                    />
+          <div className="overflow-hidden rounded-lg" ref={emblaRef} style={{ perspective: "2000px" }}>
+            <div className="flex" style={{ transformStyle: "preserve-3d" }}>
+              {images.map((src, i) => {
+                const offset = calculateSlideOffset(i, scrollProgress, images.length);
+                const { rotateY, scale, opacity, translateZ, zIndex } = getSlideTransform(offset);
+                return (
+                  <div
+                    key={i}
+                    className="flex-[0_0_85%] md:flex-[0_0_60%] min-w-0 px-2 transition-all duration-75"
+                    style={{
+                      transform: `rotateY(${rotateY}deg) translateZ(${translateZ}px) scale(${scale})`,
+                      opacity,
+                      zIndex,
+                    }}
+                  >
+                    <div className="aspect-[9/10] overflow-hidden rounded-lg shadow-xl">
+                      <img
+                        src={src}
+                        alt={`Gallery photo ${i + 1}`}
+                        loading="lazy"
+                        className="w-full h-full object-cover"
+                      />
+                    </div>
                   </div>
-                </div>
-              ))}
+                );
+              })}
             </div>
           </div>
 
