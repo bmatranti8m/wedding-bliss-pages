@@ -74,11 +74,11 @@ export const translations: Record<string, { en: string; ro: string }> = {
   },
   "timeline.event1.title": {
     en: "How We Met",
-    ro: "Prima întâlnire",
+    ro: "Cum ne-am cunoscut",
   },
   "timeline.event1.desc": {
     en: "Slowly but surely falling in love with each other while fighting for our life climbing Swiss mountains.",
-    ro: "Corina era în vacanță la Zurich, Elveția, și au plecat împreună într-o drumeție care le-a schimbat totul.",
+    ro: "În gara din Zurich, yay. Au urmat 2 weekend-uri de hike-uri. Dragostea nu te ocolește chiar dacă îți întâlnești jumătatea la 6 dimineața și nici atunci când îți dai sufletul să urci munții.",
   },
   "timeline.event2.date": {
     en: "Winter 2023",
@@ -90,7 +90,7 @@ export const translations: Record<string, { en: string; ro: string }> = {
   },
   "timeline.event2.desc": {
     en: "1st of December and the beginning of our journey together.",
-    ro: "Bogdan a vizitat-o pe Corina la București, iar ceea ce a început ca o vizită s-a transformat în începutul veșniciei.",
+    ro: "Un 1 decembrie cinstit cu mici, ciorbe și plimbat prin București la apus. <3",
   },
   "timeline.event3.date": {
     en: "February 2024",
@@ -102,7 +102,7 @@ export const translations: Record<string, { en: string; ro: string }> = {
   },
   "timeline.event3.desc": {
     en: "A romantic Valentine's weekend trip to the seaside. Mid-February, yes. Sea is there on winter as well and she's even more beautiful.",
-    ro: "O escapadă romantică de Valentine's Day la Constanța, unde au descoperit pasiunea lor comună pentru aventură.",
+    ro: "Am mers să vedem marea pe timp de iarnă. E tot acolo și e chiar mai frumoasă.",
   },
   "timeline.event4.date": {
     en: "Spring 2025",
@@ -114,7 +114,7 @@ export const translations: Record<string, { en: string; ro: string }> = {
   },
   "timeline.event4.desc": {
     en: "A helicopter ride over Miami Beach. We wanted to catch the sunset, but we couldn't. And you know what, the full moon we didn't even know about was the unpaid actor for our story. Told you, the Universe loves us.",
-    ro: "În timpul unui zbor cu elicopterul deasupra plajei din Miami, cu coasta uimitoare dedesubt, el a întrebat, iar ea a spus da.",
+    ro: "În elicopter deasupra Miami. De poveste. Ne-am dorit să prindem apusul, însă cursa a fost întârziată și deja era noapte când am decolat. Dar, din fericire, luna plină a fost acolo să fie martor la ceea ce avea să devină povestea noastră preferată <3",
   },
   "timeline.event5.date": {
     en: "Autumn 2025",
@@ -122,11 +122,11 @@ export const translations: Record<string, { en: string; ro: string }> = {
   },
   "timeline.event5.title": {
     en: "Moving to Switzerland",
-    ro: "Mutarea în Elveția",
+    ro: "Corina se mută în Elveția",
   },
   "timeline.event5.desc": {
     en: "I cannot describe this feeling.",
-    ro: "După o lungă așteptare, Corina s-a mutat în sfârșit la Zurich, iar împreună au început să-și construiască viața.",
+    ro: "(Corina speaking): Nu pot descrie în cuvinte sentimentul din poze. În zecile de zboruri pe care le-am avut către Zurich, toate la 5 dimineața, nu am reușit niciodată să văd răsăritul. Fie pentru că soarele răsărea mai târziu, mai devreme sau pentru că locurile la geam se iau dinainte. În această zi specială, Swiss Air a binevoit a-mi oferi loc la geam, iar poziția planetei în galaxie (haha) a făcut ca soarele să răsară la timp să îi pot aprecia frumusețea. Un început de zi și un început al noii mele aventuri. Am filmat aterizarea și de câte ori mă uit la filmare, sufletul mi se liniștește știind că în sfârșit sunt aici, alături de…my special one.",
   },
   "timeline.event6.date": {
     en: "June 16, 2026",
@@ -134,11 +134,11 @@ export const translations: Record<string, { en: string; ro: string }> = {
   },
   "timeline.event6.title": {
     en: "Our Wedding Day",
-    ro: "Ziua nunții noastre",
+    ro: "Ziua nunții",
   },
   "timeline.event6.desc": {
     en: "Day 1 of the rest of our life. We can't wait to celebrate with you.",
-    ro: "Grand Hotel Villa Parisi, Castiglioncello, Italia. Înconjurați de dragoste, râsete și toți oamenii care contează cel mai mult.",
+    ro: 'Începutul vieții noastre. Ne dorim să petrecem împreună cu voi. Kind reminder că dacă răspundeți „nu" va trebui să scrieți un eseu de 200 de cuvinte.',
   },
 
   // ==================== CountdownSection ====================
