@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 import { useInView } from "framer-motion";
 import { useRef } from "react";
-import couplePhoto from "@/assets/we.webp";
+import couplePhoto from "@/assets/noi.webp";
 import { useTranslation } from "@/i18n/LanguageContext";
 
 const OurStorySection = () => {
@@ -45,31 +45,20 @@ const OurStorySection = () => {
             initial={{ opacity: 0, x: 50 }}
             animate={isInView ? { opacity: 1, x: 0 } : {}}
             transition={{ duration: 0.8, delay: 0.4 }}
-            className="space-y-6"
+            className="space-y-4"
           >
-            <div className="space-y-4">
-              <h3 className="font-serif text-2xl text-foreground italic">
-                {t("story.howWeMet")}
-              </h3>
-              <p className="text-muted-foreground font-light leading-relaxed">
-                {t("story.howWeMetDesc")}
+            {[1, 2, 3, 4, 5, 6, 7, 8].map((n) => (
+              <p
+                key={n}
+                className={
+                  n === 8
+                    ? "font-serif text-xl text-primary italic pt-2 text-justify"
+                    : "text-muted-foreground font-light leading-relaxed text-justify"
+                }
+              >
+                {t(`story.p${n}`)}
               </p>
-            </div>
-
-            <div className="space-y-4">
-              <h3 className="font-serif text-2xl text-foreground italic">
-                {t("story.proposal")}
-              </h3>
-              <p className="text-muted-foreground font-light leading-relaxed">
-                {t("story.proposalDesc")}
-              </p>
-            </div>
-
-            <div className="pt-4">
-              <p className="font-serif text-xl text-primary italic">
-                {t("story.quote")}
-              </p>
-            </div>
+            ))}
           </motion.div>
         </div>
       </div>

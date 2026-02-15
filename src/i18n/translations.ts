@@ -22,25 +22,37 @@ export const translations: Record<string, { en: string; ro: string }> = {
     en: "Our Love Story",
     ro: "Povestea noastră de dragoste",
   },
-  "story.howWeMet": {
-    en: "How We Met",
-    ro: "Cum ne-am cunoscut",
+  "story.p1": {
+    en: "I could write a whole book about us and how the planets had to align for us to meet. And honestly, it feels like they really had some work to do\u2026 because it took a while.",
+    ro: "A\u0219 putea scrie o \u00eentreag\u0103 carte despre noi \u0219i despre cum s-au aliniat planetele ca s\u0103 ne \u00eent\u00e2lnim. \u0218i sincer, pare c\u0103 au avut ceva de lucru, c\u0103 a durat ceva\u2026",
   },
-  "story.howWeMetDesc": {
-    en: "Corina was on vacation in Zurich, Switzerland, and they went on a hike together that changed everything.",
-    ro: "Corina era în vacanță la Zurich, Elveția, și au plecat împreună într-o drumeție care le-a schimbat totul.",
+  "story.p2": {
+    en: "It wasn\u2019t love at first sight - but it didn\u2019t take us long either. By the third hike, our eyes kept meeting each other, I was laughing at all his jokes (he\u2019s not thaaat funny), and we kept choosing seats next to each other on the train just so our knees could \u2018accidentally\u2019 touch.",
+    ro: "N-a fost dragoste la prima vedere, dar nici mult nu ne-a luat. Dup\u0103 3 hike-uri deja ne uitam unul la altul cam mult, r\u00e2deam la orice glum\u0103 a lui (he\u2019s not thaaat funny) \u0219i ne a\u0219ezam unul l\u00e2ng\u0103 altul \u00een tren \u2013 doar-doar ni se atingeau genunchii \u201Edin gre\u0219eal\u0103\u201D.",
   },
-  "story.proposal": {
-    en: "The Proposal",
-    ro: "Cererea în căsătorie",
+  "story.p3": {
+    en: "Two weekends of trails and beautiful views brought us close enough to say, \u2018Let's see what happens\u2019.",
+    ro: "Dou\u0103 weekenduri cu trasee \u0219i priveli\u0219ti faine ne-au adus practic suficient de aproape c\u00e2t s\u0103 spunem: \u201EHai s\u0103 vedem ce iese\u201D.",
   },
-  "story.proposalDesc": {
-    en: "Bogdan surprised Corina during a helicopter ride over Miami Beach. As they soared above the sparkling turquoise waters and iconic coastline, he asked the question that would begin their forever \u2014 and she said yes.",
-    ro: "Bogdan a surprins-o pe Corina în timpul unui zbor cu elicopterul deasupra plajei din Miami. În timp ce pluteau deasupra apelor turcoaz strălucitoare și a coastei iconice, el a pus întrebarea care avea să le marcheze începutul pentru totdeauna \u2014 iar ea a spus da.",
+  "story.p4": {
+    en: "\u2018And what happened?\u2019 you might ask. Well, wouldn\u2019t I love to keep you all in a 5 hour-speech and just tell this story like it deserves to be told. But I\u2019ll keep it short. A long-distance relationship with facetime every single night, good morning texts, using the airport more often than the grocery store, flowers, birthday balloons, travel plans, and thousands of goofy smiling pictures.",
+    ro: "\u0218i ce-a ie\u0219it? O rela\u021Bie la distan\u021B\u0103 cu FaceTime \u00een fiecare sear\u0103, mesaje de bun\u0103 diminea\u021Ba, folosit aeroportul mai des dec\u00e2t Mega Image, flori, baloane de zilele noastre de na\u0219tere, planuri de c\u0103l\u0103torii, mii de poze r\u00e2njind t\u00e2mp ca doi \u00eendr\u0103gosti\u021Bi.",
   },
-  "story.quote": {
-    en: "\u201CIn you, I\u2019ve found the love of my life and my closest, truest friend.\u201D",
-    ro: "\u201CÎn tine am găsit dragostea vieții mele și cel mai apropiat, cel mai adevărat prieten.\u201D",
+  "story.p5": {
+    en: "It really wasn\u2019t easy, but long-distance relationships have their own kind of magic. Missing someone means you get to feel the reunion twice as intensely. And I truly believe we have to allow ourselves to live like that - to pay attention to the little things that make us happy and fully enjoy them when they do happen.",
+    ro: "N-a fost u\u0219or, dar rela\u021Biile la distan\u021B\u0103 au farmecul lor. Dorul \u00eenseamn\u0103 s\u0103 tr\u0103ie\u0219ti mai intens emo\u021Biile re\u00eent\u00e2lnirii \u0219i cred sincer c\u0103 trebuie s\u0103 ne d\u0103m voie s\u0103 tr\u0103im astfel, s\u0103 fim aten\u021Bi la lucrurile care ne fac ferici\u021Bi \u0219i s\u0103 ne bucur\u0103m atunci c\u00e2nd ele se \u00eent\u00e2mpl\u0103.",
+  },
+  "story.p6": {
+    en: "I\u2019m grateful every single day that life brought me the man I needed. Not the man from my imaginary \u2018dream list,\u2019 but the one I truly needed. I might be a little too cheesy saying this, but I don\u2019t know what I would do without him. I mean\u2026I would certainly starve.",
+    ro: "Sunt recunosc\u0103toare vie\u021Bii \u00een fiecare zi c\u0103 mi-a scos \u00een cale b\u0103rbatul de care aveam nevoie. Nu b\u0103rbatul visurilor mele, dar cel de care aveam nevoie. Cred c\u0103 sunt cam siropoas\u0103 spun\u00e2nd asta, \u00eens\u0103 merit\u0103 s\u0103 \u0219tie c\u0103 nu \u0219tiu ce m-a\u0219 face f\u0103r\u0103 el\u2026 probabil a\u0219 muri de foame.",
+  },
+  "story.p7": {
+    en: "Yup, your dream man isn\u2019t the tall, dark, blue-eyed fantasy. It\u2019s the one who completes who you are. And since he was missing three-hour conversations about absolutely nothing, and I was missing a personal chef, life decided to solve both problems at once.",
+    ro: "Da, da, b\u0103rbatul visurilor tale nu e \u0103la \u00eenalt, brunet, cu ochi alba\u0219tri, e cel care completeaz\u0103 cine e\u0219ti. \u0218i pentru c\u0103 lui \u00eei lipseau discu\u021Biile de 3 ore despre nimicuri, iar mie \u00eemi lipsea buc\u0103tarul, via\u021Ba a decis s\u0103 ne aduc\u0103 \u00eempreun\u0103.",
+  },
+  "story.p8": {
+    en: "We found each other at the right time. And we cannot wait to begin this new chapter of our lives surrounded by you \u2764 the dearest of our dear ones.",
+    ro: "Voi \u00eencheia r\u00e2ndurile acestea prin a spune c\u0103 ne-am g\u0103sit unul pe cel\u0103lalt la momentul potrivit \u0219i c\u0103 abia a\u0219tept\u0103m s\u0103 petrecem \u00eenceputul vie\u021Bii noastre al\u0103turi de voi, cei mai dragi dintre cei dragi nou\u0103.",
   },
   "story.imageAlt": {
     en: "Bogdan and Corina",

@@ -181,14 +181,14 @@ const TimelineSection = () => {
     // Calculate Y position of last pin
     const lastPinY = startY + (timelineEvents.length - 1) * spacing;
 
-    // Heart is positioned shortly after the last pin - stop at the heart
-    const finalY = lastPinY + 60; // Extend to reach the heart center
+    // Heart is positioned after the last pin - stop at heart center
+    const finalY = lastPinY + 460;
 
     // Simple straight line from first pin through all pins to heart
     return `M ${center} ${startY} L ${center} ${finalY}`;
   };
 
-  const totalHeight = (timelineEvents.length - 1) * 520 + 300;
+  const totalHeight = timelineEvents.length * 520 + 300;
 
   return (
     <section ref={ref} id="timeline" className="section-padding gradient-sage relative overflow-hidden">
