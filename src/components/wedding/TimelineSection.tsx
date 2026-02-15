@@ -14,6 +14,7 @@ import img7239 from "@/assets/IMG_7239.webp";
 import img2214 from "@/assets/IMG_2214.webp";
 import img2225 from "@/assets/IMG_2225.webp";
 import img5385 from "@/assets/IMG_5385.webp";
+import img9851 from "@/assets/IMG_9851.webp";
 import img2115 from "@/assets/IMG_2115.webp";
 import img2117 from "@/assets/IMG_2117.webp";
 import vid2120 from "@/assets/IMG_2120.mov";
@@ -246,7 +247,7 @@ const TimelineSection = () => {
       date: t("timeline.event4.date"),
       title: t("timeline.event4.title"),
       description: t("timeline.event4.desc"),
-      images: [img5385, img5543, img5821, img5952],
+      images: [img9851, img5385, img5543, img5821, img5952],
       position: "right",
       aspect: "aspect-[3/4]",
       objectPosition: "center top",
