@@ -15,7 +15,7 @@ import vid2120 from "@/assets/IMG_2120.mov";
 import img5543 from "@/assets/IMG_5543.webp";
 import img5821 from "@/assets/IMG_5821.webp";
 import img5952 from "@/assets/IMG_5952.webp";
-import couplePhoto from "@/assets/couple-photo.webp";
+import weddingInvitation from "@/assets/wedding-invitation.webp";
 import { useTranslation } from "@/i18n/LanguageContext";
 
 interface TimelineEvent {
@@ -259,7 +259,7 @@ const TimelineSection = () => {
       date: t("timeline.event6.date"),
       title: t("timeline.event6.title"),
       description: t("timeline.event6.desc"),
-      images: [couplePhoto],
+      images: [weddingInvitation],
       position: "right",
       aspect: "aspect-[3/4]",
       objectPosition: "center top",
