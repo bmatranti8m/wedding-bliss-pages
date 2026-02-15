@@ -33,7 +33,7 @@ const RSVPSection = () => {
     setIsSubmitting(true);
 
     try {
-      const timestamp = new Date().toISOString();
+      const timestamp = new Date().toLocaleDateString('ro-RO');
       const params = new URLSearchParams();
       params.append('name', formData.name);
       params.append('email', formData.email);
