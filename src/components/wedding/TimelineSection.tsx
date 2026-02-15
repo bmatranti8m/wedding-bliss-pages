@@ -1,9 +1,13 @@
 import { motion } from "framer-motion";
 import { useInView } from "framer-motion";
-import { useRef } from "react";
+import { useRef, useState, useCallback, useEffect } from "react";
+import useEmblaCarousel from "embla-carousel-react";
+import { ChevronLeft, ChevronRight } from "lucide-react";
 import img0528 from "@/assets/IMG_0528.webp";
-import img1868 from "@/assets/IMG_1868.webp";
+import img1868 from "@/assets/IMG_6501.webp";
 import img7239 from "@/assets/IMG_7239.webp";
+import img2214 from "@/assets/IMG_2214.webp";
+import img2225 from "@/assets/IMG_2225.webp";
 import wePhoto from "@/assets/we.webp";
 import img5385 from "@/assets/IMG_5385.webp";
 import couplePhoto from "@/assets/couple-photo.webp";
@@ -13,10 +17,90 @@ interface TimelineEvent {
   date: string;
   title: string;
   description: string;
-  image: string;
+  images: string[];
   position: "left" | "right";
   objectFit?: "cover" | "contain";
+  objectPosition?: string;
+  aspect?: string;
 }
+
+const TimelineCarousel = ({ event }: { event: TimelineEvent }) => {
+  const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true });
+  const [selectedIndex, setSelectedIndex] = useState(0);
+
+  const scrollPrev = useCallback(() => emblaApi?.scrollPrev(), [emblaApi]);
+  const scrollNext = useCallback(() => emblaApi?.scrollNext(), [emblaApi]);
+
+  useEffect(() => {
+    if (!emblaApi) return;
+    const onSelect = () => setSelectedIndex(emblaApi.selectedScrollSnap());
+    emblaApi.on("select", onSelect);
+    return () => { emblaApi.off("select", onSelect); };
+  }, [emblaApi]);
+
+  const hasMultiple = event.images.length > 1;
+
+  if (!hasMultiple) {
+    return (
+      <div className={`${event.aspect || "aspect-[4/3]"} overflow-hidden rounded-lg shadow-xl relative group`}>
+        <img
+          src={event.images[0]}
+          alt={event.title}
+          loading="lazy"
+          className={`w-full h-full ${event.objectFit === "contain" ? "object-contain" : "object-cover"} transition-transform duration-700 group-hover:scale-110`}
+          style={event.objectPosition ? { objectPosition: event.objectPosition } : undefined}
+        />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+      </div>
+    );
+  }
+
+  return (
+    <div className="relative">
+      <div className={`${event.aspect || "aspect-[4/3]"} overflow-hidden rounded-lg shadow-xl`} ref={emblaRef}>
+        <div className="flex h-full">
+          {event.images.map((src, i) => (
+            <div key={i} className="flex-[0_0_100%] min-w-0 h-full">
+              <img
+                src={src}
+                alt={`${event.title} ${i + 1}`}
+                loading="lazy"
+                className={`w-full h-full ${event.objectFit === "contain" ? "object-contain" : "object-cover"}`}
+                style={event.objectPosition ? { objectPosition: event.objectPosition } : undefined}
+              />
+            </div>
+          ))}
+        </div>
+      </div>
+      <button
+        onClick={scrollPrev}
+        className="absolute left-1 top-1/2 -translate-y-1/2 w-7 h-7 md:w-8 md:h-8 rounded-full bg-white/80 backdrop-blur-sm shadow-lg flex items-center justify-center hover:bg-white transition-colors z-10"
+        aria-label="Previous photo"
+      >
+        <ChevronLeft className="w-4 h-4 text-foreground" />
+      </button>
+      <button
+        onClick={scrollNext}
+        className="absolute right-1 top-1/2 -translate-y-1/2 w-7 h-7 md:w-8 md:h-8 rounded-full bg-white/80 backdrop-blur-sm shadow-lg flex items-center justify-center hover:bg-white transition-colors z-10"
+        aria-label="Next photo"
+      >
+        <ChevronRight className="w-4 h-4 text-foreground" />
+      </button>
+      <div className="flex justify-center gap-1.5 mt-2">
+        {event.images.map((_, i) => (
+          <button
+            key={i}
+            aria-label={`Go to photo ${i + 1}`}
+            onClick={() => emblaApi?.scrollTo(i)}
+            className={`rounded-full transition-all duration-300 ${
+              i === selectedIndex ? "w-4 h-1.5 bg-primary" : "w-1.5 h-1.5 bg-primary/30"
+            }`}
+          />
+        ))}
+      </div>
+    </div>
+  );
+};
 
 const TimelineItem = ({ event, index }: { event: TimelineEvent; index: number }) => {
   const ref = useRef(null);
@@ -49,15 +133,7 @@ const TimelineItem = ({ event, index }: { event: TimelineEvent; index: number })
             </div>
           ) : (
             <div className="w-full">
-              <div className="aspect-[4/3] overflow-hidden rounded-lg shadow-xl relative group">
-                <img
-                  src={event.image}
-                  alt={event.title}
-                  loading="lazy"
-                  className={`w-full h-full ${event.objectFit === "contain" ? "object-contain" : "object-cover"} transition-transform duration-700 group-hover:scale-110`}
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-              </div>
+              <TimelineCarousel event={event} />
             </div>
           )}
         </motion.div>
@@ -100,15 +176,7 @@ const TimelineItem = ({ event, index }: { event: TimelineEvent; index: number })
             </div>
           ) : (
             <div className="w-full">
-              <div className="aspect-[4/3] overflow-hidden rounded-lg shadow-xl relative group">
-                <img
-                  src={event.image}
-                  alt={event.title}
-                  loading="lazy"
-                  className={`w-full h-full ${event.objectFit === "contain" ? "object-contain" : "object-cover"} transition-transform duration-700 group-hover:scale-110`}
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-              </div>
+              <TimelineCarousel event={event} />
             </div>
           )}
         </motion.div>
@@ -127,28 +195,32 @@ const TimelineSection = () => {
       date: t("timeline.event1.date"),
       title: t("timeline.event1.title"),
       description: t("timeline.event1.desc"),
-      image: img0528,
+      images: [img0528],
       position: "left",
     },
     {
       date: t("timeline.event2.date"),
       title: t("timeline.event2.title"),
       description: t("timeline.event2.desc"),
-      image: img1868,
+      images: [img1868],
       position: "right",
+      aspect: "aspect-[3/4]",
+      objectPosition: "center top",
     },
     {
       date: t("timeline.event3.date"),
       title: t("timeline.event3.title"),
       description: t("timeline.event3.desc"),
-      image: img7239,
+      images: [img7239, img2214, img2225],
       position: "left",
+      aspect: "aspect-[3/4]",
+      objectPosition: "center top",
     },
     {
       date: t("timeline.event4.date"),
       title: t("timeline.event4.title"),
       description: t("timeline.event4.desc"),
-      image: img5385,
+      images: [img5385],
       position: "right",
       objectFit: "contain",
     },
@@ -156,14 +228,14 @@ const TimelineSection = () => {
       date: t("timeline.event5.date"),
       title: t("timeline.event5.title"),
       description: t("timeline.event5.desc"),
-      image: wePhoto,
+      images: [wePhoto],
       position: "left",
     },
     {
       date: t("timeline.event6.date"),
       title: t("timeline.event6.title"),
       description: t("timeline.event6.desc"),
-      image: couplePhoto,
+      images: [couplePhoto],
       position: "right",
     },
   ];
