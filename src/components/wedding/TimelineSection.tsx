@@ -10,6 +10,9 @@ import img2214 from "@/assets/IMG_2214.webp";
 import img2225 from "@/assets/IMG_2225.webp";
 import wePhoto from "@/assets/we.webp";
 import img5385 from "@/assets/IMG_5385.webp";
+import img5543 from "@/assets/IMG_5543.webp";
+import img5821 from "@/assets/IMG_5821.webp";
+import img5952 from "@/assets/IMG_5952.webp";
 import couplePhoto from "@/assets/couple-photo.webp";
 import { useTranslation } from "@/i18n/LanguageContext";
 
@@ -220,9 +223,10 @@ const TimelineSection = () => {
       date: t("timeline.event4.date"),
       title: t("timeline.event4.title"),
       description: t("timeline.event4.desc"),
-      images: [img5385],
+      images: [img5385, img5543, img5821, img5952],
       position: "right",
-      objectFit: "contain",
+      aspect: "aspect-[3/4]",
+      objectPosition: "center top",
     },
     {
       date: t("timeline.event5.date"),
