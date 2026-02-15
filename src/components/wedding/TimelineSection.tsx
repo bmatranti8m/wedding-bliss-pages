@@ -4,6 +4,11 @@ import { useRef, useState, useCallback, useEffect } from "react";
 import useEmblaCarousel from "embla-carousel-react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import img0528 from "@/assets/IMG_0528.webp";
+import img4376 from "@/assets/IMG_4376.webp";
+import img5163 from "@/assets/IMG_5163.webp";
+import img5336 from "@/assets/IMG_5336.webp";
+import img5909 from "@/assets/IMG_5909.webp";
+import img9533 from "@/assets/IMG_9533.webp";
 import img1868 from "@/assets/IMG_6501.webp";
 import img7239 from "@/assets/IMG_7239.webp";
 import img2214 from "@/assets/IMG_2214.webp";
@@ -214,7 +219,7 @@ const TimelineSection = () => {
       date: t("timeline.event1.date"),
       title: t("timeline.event1.title"),
       description: t("timeline.event1.desc"),
-      images: [img0528],
+      images: [img0528, img4376, img5163, img5336, img5909, img9533],
       position: "left",
       aspect: "aspect-[3/4]",
       objectPosition: "center top",
