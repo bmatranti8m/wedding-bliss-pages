@@ -132,7 +132,7 @@ export const translations: Record<string, { en: string; ro: string }> = {
   // ==================== CountdownSection ====================
   "countdown.title": {
     en: "Counting Down to Forever",
-    ro: "Numărătoarea inversă spre forever",
+    ro: "Numărătoarea inversă",
   },
   "countdown.days": {
     en: "Days",
@@ -561,12 +561,12 @@ export const translations: Record<string, { en: string; ro: string }> = {
     ro: "Tot ce trebuie să știi pentru călătoria ta în Toscana",
   },
   "travel.airport.title": {
-    en: "Nearest Airport",
-    ro: "Cel mai apropiat aeroport",
+    en: "Nearest Airports",
+    ro: "Cele mai apropiate aeroporturi",
   },
   "travel.airport.desc": {
-    en: "Pisa International Airport (PSA) is about 1 hour drive from the venue. Florence Airport (FLR) is about 1.5 hours away.",
-    ro: "Aeroportul Internațional Pisa (PSA) este la aproximativ 1 oră cu mașina de locație. Aeroportul Florența (FLR) este la aproximativ 1,5 ore distanță.",
+    en: "Pisa International Airport (PSA) is about 1 hour drive from the venue. Florence Airport (FLR) is about 1.5 hours away. Bologna Airport (BLQ) is about 2.5 hours away.",
+    ro: "Aeroportul Internațional Pisa (PSA) este la aproximativ 1 oră cu mașina de locație. Aeroportul Florența (FLR) este la aproximativ 1,5 ore distanță. Aeroportul Bologna (BLQ) este la aproximativ 2,5 ore distanță.",
   },
   "travel.transport.title": {
     en: "Getting Around",
@@ -581,8 +581,8 @@ export const translations: Record<string, { en: string; ro: string }> = {
     ro: "Cazare",
   },
   "travel.stay.desc": {
-    en: "The venue, Grand Hotel Villa Parisi, offers rooms for guests. Nearby alternatives include hotels in Castiglioncello and Rosignano Marittimo.",
-    ro: "Locația, Grand Hotel Villa Parisi, oferă camere pentru invitați. Alternative din apropiere includ hoteluri în Castiglioncello și Rosignano Marittimo.",
+    en: "We provide accommodation at the villa on June 15 and 16. Nearby alternatives include hotels in Castiglioncello and Rosignano Marittimo.",
+    ro: "Noi oferim cazarea pe 15 și pe 16 la vilă. Alternative din apropiere includ hoteluri în Castiglioncello și Rosignano Marittimo.",
   },
   "travel.tip.title": {
     en: "Pro Tips",
@@ -616,9 +616,33 @@ export const translations: Record<string, { en: string; ro: string }> = {
     en: "Dietary Restrictions",
     ro: "Restricții alimentare",
   },
+  "rsvp.dietaryNone": {
+    en: "None",
+    ro: "Niciuna",
+  },
+  "rsvp.dietaryVegetarian": {
+    en: "Vegetarian",
+    ro: "Vegetarian",
+  },
+  "rsvp.dietaryVegan": {
+    en: "Vegan",
+    ro: "Vegan",
+  },
+  "rsvp.dietaryGlutenFree": {
+    en: "Gluten-free",
+    ro: "Fără gluten",
+  },
+  "rsvp.dietaryLactoseIntolerant": {
+    en: "Lactose intolerant",
+    ro: "Intoleranță la lactoză",
+  },
+  "rsvp.dietaryOther": {
+    en: "Other",
+    ro: "Altele",
+  },
   "rsvp.dietaryPlaceholder": {
-    en: "Vegetarian, vegan, allergies, etc.",
-    ro: "Vegetarian, vegan, alergii, etc.",
+    en: "Please specify...",
+    ro: "Vă rugăm specificați...",
   },
 
   // ==================== SaveTheDate ====================
