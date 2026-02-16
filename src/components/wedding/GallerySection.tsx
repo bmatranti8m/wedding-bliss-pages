@@ -59,7 +59,7 @@ const GallerySection = () => {
   const isInView = useInView(ref, { once: true, margin: "-100px" });
   const { t } = useTranslation();
   const [selectedIndex, setSelectedIndex] = useState(0);
-  const [scrollProgress, setScrollProgress] = useState(0);
+  const slidesRef = useRef<(HTMLDivElement | null)[]>([]);
 
   const [emblaRef, emblaApi] = useEmblaCarousel({
     loop: true,
@@ -69,13 +69,22 @@ const GallerySection = () => {
   const scrollPrev = useCallback(() => emblaApi?.scrollPrev(), [emblaApi]);
   const scrollNext = useCallback(() => emblaApi?.scrollNext(), [emblaApi]);
 
+  const updateSlideTransforms = useCallback((progress: number) => {
+    const total = images.length;
+    slidesRef.current.forEach((el, i) => {
+      if (!el) return;
+      const offset = calculateSlideOffset(i, progress, total);
+      const { rotateY, scale, opacity, translateZ, zIndex } = getSlideTransform(offset);
+      el.style.transform = `rotateY(${rotateY}deg) translateZ(${translateZ}px) scale(${scale})`;
+      el.style.opacity = String(opacity);
+      el.style.zIndex = String(zIndex);
+    });
+  }, []);
+
   useEffect(() => {
     if (!emblaApi) return;
     const onSelect = () => setSelectedIndex(emblaApi.selectedScrollSnap());
-    const onScroll = () => {
-      const progress = emblaApi.scrollProgress();
-      setScrollProgress(progress);
-    };
+    const onScroll = () => updateSlideTransforms(emblaApi.scrollProgress());
     emblaApi.on("select", onSelect);
     emblaApi.on("scroll", onScroll);
     onScroll(); // initialize
@@ -83,7 +92,7 @@ const GallerySection = () => {
       emblaApi.off("select", onSelect);
       emblaApi.off("scroll", onScroll);
     };
-  }, [emblaApi]);
+  }, [emblaApi, updateSlideTransforms]);
 
   return (
     <section ref={ref} id="gallery" className="py-16 md:py-24 px-6 md:px-12 bg-background">
@@ -112,30 +121,22 @@ const GallerySection = () => {
         >
           <div className="overflow-hidden rounded-lg" ref={emblaRef} style={{ perspective: "2000px" }}>
             <div className="flex" style={{ transformStyle: "preserve-3d" }}>
-              {images.map((src, i) => {
-                const offset = calculateSlideOffset(i, scrollProgress, images.length);
-                const { rotateY, scale, opacity, translateZ, zIndex } = getSlideTransform(offset);
-                return (
-                  <div
-                    key={i}
-                    className="flex-[0_0_85%] md:flex-[0_0_60%] min-w-0 px-2 transition-all duration-75"
-                    style={{
-                      transform: `rotateY(${rotateY}deg) translateZ(${translateZ}px) scale(${scale})`,
-                      opacity,
-                      zIndex,
-                    }}
-                  >
-                    <div className="aspect-[9/10] overflow-hidden rounded-lg shadow-xl">
-                      <img
-                        src={src}
-                        alt={`Gallery photo ${i + 1}`}
-                        loading="lazy"
-                        className="w-full h-full object-cover"
-                      />
-                    </div>
+              {images.map((src, i) => (
+                <div
+                  key={i}
+                  ref={(el) => { slidesRef.current[i] = el; }}
+                  className="flex-[0_0_85%] md:flex-[0_0_60%] min-w-0 px-2 will-change-transform"
+                >
+                  <div className="aspect-[9/10] overflow-hidden rounded-lg shadow-xl">
+                    <img
+                      src={src}
+                      alt={`Gallery photo ${i + 1}`}
+                      loading="lazy"
+                      className="w-full h-full object-cover"
+                    />
                   </div>
-                );
-              })}
+                </div>
+              ))}
             </div>
           </div>
 
