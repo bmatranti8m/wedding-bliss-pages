@@ -507,20 +507,108 @@ export const translations: Record<string, { en: string; ro: string }> = {
     ro: "Cine dansează mai bine?",
   },
   "predictions.q3": {
-    en: "Who wakes up earlier?",
-    ro: "Cine se trezește mai devreme?",
+    en: "Will the couple smash cake in each other's faces?",
+    ro: "Vor înfunda tortul în fața celuilalt?",
+  },
+  "predictions.q3o1": {
+    en: "Absolutely",
+    ro: "Absolut",
+  },
+  "predictions.q3o2": {
+    en: "No way",
+    ro: "Nicio șansă",
+  },
+  "predictions.q3o3": {
+    en: "A tiny playful smudge",
+    ro: "O mică pată jucăușă",
   },
   "predictions.q4": {
-    en: "Who's the better cook?",
-    ro: "Cine gătește mai bine?",
+    en: "Who will be last on the dance floor?",
+    ro: "Cine va fi ultimul pe ringul de dans?",
+  },
+  "predictions.q4o1": {
+    en: "The bride",
+    ro: "Mireasa",
+  },
+  "predictions.q4o2": {
+    en: "The groom",
+    ro: "Mirele",
+  },
+  "predictions.q4o3": {
+    en: "A bridesmaid",
+    ro: "O domnișoară de onoare",
+  },
+  "predictions.q4o4": {
+    en: "A groomsman",
+    ro: "Un cavaler de onoare",
+  },
+  "predictions.q4o5": {
+    en: "An unexpected guest",
+    ro: "Un invitat neașteptat",
   },
   "predictions.q5": {
-    en: "Who's more romantic?",
-    ro: "Cine e mai romantic?",
+    en: "How many Aperol Spritzes will be consumed?",
+    ro: "Câte Aperol Spritz-uri se vor consuma?",
+  },
+  "predictions.q5o1": {
+    en: "Under 50",
+    ro: "Sub 50",
+  },
+  "predictions.q5o2": {
+    en: "50–100",
+    ro: "50–100",
+  },
+  "predictions.q5o3": {
+    en: "We're draining the Amalfi coast",
+    ro: "Secăm Coasta Amalfi",
   },
   "predictions.q6": {
-    en: "Who says 'I love you' first each day?",
-    ro: "Cine spune primul 'Te iubesc' în fiecare zi?",
+    en: "How many guests will attempt to speak Italian?",
+    ro: "Câți invitați vor încerca să vorbească italiană?",
+  },
+  "predictions.q6o1": {
+    en: "0",
+    ro: "0",
+  },
+  "predictions.q6o2": {
+    en: "3–5 confident Duolingo users",
+    ro: "3–5 utilizatori Duolingo încrezători",
+  },
+  "predictions.q6o3": {
+    en: "Half the wedding",
+    ro: "Jumătate din nuntă",
+  },
+  "predictions.q7": {
+    en: "How long will the first kiss last?",
+    ro: "Cât va dura primul sărut?",
+  },
+  "predictions.q7o1": {
+    en: "Quick & classy",
+    ro: "Scurt și elegant",
+  },
+  "predictions.q7o2": {
+    en: "Movie moment",
+    ro: "Moment de film",
+  },
+  "predictions.q7o3": {
+    en: "Slightly awkwardly long",
+    ro: "Ușor stânjenitor de lung",
+  },
+  "predictions.q8": {
+    en: "First Dance Song?",
+    ro: "Melodia primului dans?",
+  },
+  "predictions.q8placeholder": {
+    en: "Enter your guess...",
+    ro: "Scrie ghicirea ta...",
+  },
+  "predictions.q9": {
+    en: "How late will the bride be?",
+    ro: "Cu cât va întârzia mireasa?",
+  },
+  "predictions.q9placeholder": {
+    en: "Enter your guess...",
+    ro: "Scrie ghicirea ta...",
   },
   "predictions.submit": {
     en: "Submit Predictions",

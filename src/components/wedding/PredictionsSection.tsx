@@ -14,41 +14,52 @@ interface PredictionsSectionProps {
 interface PollQuestionProps {
   question: string;
   name: string;
-  option1: string;
-  option2: string;
+  options: string[];
   value: string;
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
-const PollQuestion = ({ question, name, option1, option2, value, onChange }: PollQuestionProps) => (
+const PollQuestion = ({ question, name, options, value, onChange }: PollQuestionProps) => (
   <div className="bg-white/70 p-6 rounded-lg">
     <p className="font-serif text-xl text-foreground mb-4">{question}</p>
     <div className="space-y-3">
-      <label className="flex items-center p-3 bg-white border border-gray-300 cursor-pointer hover:border-primary transition-colors rounded">
-        <input
-          type="radio"
-          name={name}
-          value={option1}
-          checked={value === option1}
-          onChange={onChange}
-          required
-          className="w-4 h-4 text-primary border-gray-300 focus:ring-primary mr-3"
-        />
-        <span className="text-primary font-sans">{option1}</span>
-      </label>
-      <label className="flex items-center p-3 bg-white border border-gray-300 cursor-pointer hover:border-primary transition-colors rounded">
-        <input
-          type="radio"
-          name={name}
-          value={option2}
-          checked={value === option2}
-          onChange={onChange}
-          required
-          className="w-4 h-4 text-primary border-gray-300 focus:ring-primary mr-3"
-        />
-        <span className="text-primary font-sans">{option2}</span>
-      </label>
+      {options.map((option) => (
+        <label key={option} className="flex items-center p-3 bg-white border border-gray-300 cursor-pointer hover:border-primary transition-colors rounded">
+          <input
+            type="radio"
+            name={name}
+            value={option}
+            checked={value === option}
+            onChange={onChange}
+            required
+            className="w-4 h-4 text-primary border-gray-300 focus:ring-primary mr-3"
+          />
+          <span className="text-primary font-sans">{option}</span>
+        </label>
+      ))}
     </div>
+  </div>
+);
+
+interface TextQuestionProps {
+  question: string;
+  name: string;
+  value: string;
+  placeholder?: string;
+  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+}
+
+const TextQuestion = ({ question, name, value, placeholder, onChange }: TextQuestionProps) => (
+  <div className="bg-white/70 p-6 rounded-lg">
+    <p className="font-serif text-xl text-foreground mb-4">{question}</p>
+    <input
+      type="text"
+      name={name}
+      value={value}
+      onChange={onChange}
+      placeholder={placeholder}
+      className="w-full p-3 bg-white border border-gray-300 rounded focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-colors text-primary font-sans"
+    />
   </div>
 );
 
@@ -61,10 +72,13 @@ const PredictionsSection = ({ guestName }: PredictionsSectionProps) => {
   const [formData, setFormData] = useState({
     criesFirst: "",
     betterDancer: "",
-    wakesEarlier: "",
-    betterCook: "",
-    moreRomantic: "",
-    saysILoveYouFirst: "",
+    cakeSmash: "",
+    lastOnDanceFloor: "",
+    aperolSpritzes: "",
+    speakItalian: "",
+    firstKiss: "",
+    firstDanceSong: "",
+    brideLate: "",
   });
 
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -79,10 +93,13 @@ const PredictionsSection = ({ guestName }: PredictionsSectionProps) => {
       params.append('guestName', guestName);
       params.append('criesFirst', formData.criesFirst);
       params.append('betterDancer', formData.betterDancer);
-      params.append('wakesEarlier', formData.wakesEarlier);
-      params.append('betterCook', formData.betterCook);
-      params.append('moreRomantic', formData.moreRomantic);
-      params.append('saysILoveYouFirst', formData.saysILoveYouFirst);
+      params.append('cakeSmash', formData.cakeSmash);
+      params.append('lastOnDanceFloor', formData.lastOnDanceFloor);
+      params.append('aperolSpritzes', formData.aperolSpritzes);
+      params.append('speakItalian', formData.speakItalian);
+      params.append('firstKiss', formData.firstKiss);
+      params.append('firstDanceSong', formData.firstDanceSong);
+      params.append('brideLate', formData.brideLate);
       params.append('timestamp', timestamp);
 
       await fetch(PREDICTIONS_URL, {
@@ -99,10 +116,13 @@ const PredictionsSection = ({ guestName }: PredictionsSectionProps) => {
       setFormData({
         criesFirst: "",
         betterDancer: "",
-        wakesEarlier: "",
-        betterCook: "",
-        moreRomantic: "",
-        saysILoveYouFirst: "",
+        cakeSmash: "",
+        lastOnDanceFloor: "",
+        aperolSpritzes: "",
+        speakItalian: "",
+        firstKiss: "",
+        firstDanceSong: "",
+        brideLate: "",
       });
     } catch (error) {
       toast({
@@ -121,6 +141,12 @@ const PredictionsSection = ({ guestName }: PredictionsSectionProps) => {
       [e.target.name]: e.target.value,
     }));
   };
+
+  const q3Options = [t("predictions.q3o1"), t("predictions.q3o2"), t("predictions.q3o3")];
+  const q4Options = [t("predictions.q4o1"), t("predictions.q4o2"), t("predictions.q4o3"), t("predictions.q4o4"), t("predictions.q4o5")];
+  const q5Options = [t("predictions.q5o1"), t("predictions.q5o2"), t("predictions.q5o3")];
+  const q6Options = [t("predictions.q6o1"), t("predictions.q6o2"), t("predictions.q6o3")];
+  const q7Options = [t("predictions.q7o1"), t("predictions.q7o2"), t("predictions.q7o3")];
 
   return (
     <section ref={ref} className="section-padding bg-champagne/20">
@@ -152,8 +178,7 @@ const PredictionsSection = ({ guestName }: PredictionsSectionProps) => {
           <PollQuestion
             question={t("predictions.q1")}
             name="criesFirst"
-            option1="Bogdan"
-            option2="Corina"
+            options={["Bogdan", "Corina"]}
             value={formData.criesFirst}
             onChange={handleChange}
           />
@@ -161,45 +186,64 @@ const PredictionsSection = ({ guestName }: PredictionsSectionProps) => {
           <PollQuestion
             question={t("predictions.q2")}
             name="betterDancer"
-            option1="Bogdan"
-            option2="Corina"
+            options={["Bogdan", "Corina"]}
             value={formData.betterDancer}
             onChange={handleChange}
           />
 
           <PollQuestion
             question={t("predictions.q3")}
-            name="wakesEarlier"
-            option1="Bogdan"
-            option2="Corina"
-            value={formData.wakesEarlier}
+            name="cakeSmash"
+            options={q3Options}
+            value={formData.cakeSmash}
             onChange={handleChange}
           />
 
           <PollQuestion
             question={t("predictions.q4")}
-            name="betterCook"
-            option1="Bogdan"
-            option2="Corina"
-            value={formData.betterCook}
+            name="lastOnDanceFloor"
+            options={q4Options}
+            value={formData.lastOnDanceFloor}
             onChange={handleChange}
           />
 
           <PollQuestion
             question={t("predictions.q5")}
-            name="moreRomantic"
-            option1="Bogdan"
-            option2="Corina"
-            value={formData.moreRomantic}
+            name="aperolSpritzes"
+            options={q5Options}
+            value={formData.aperolSpritzes}
             onChange={handleChange}
           />
 
           <PollQuestion
             question={t("predictions.q6")}
-            name="saysILoveYouFirst"
-            option1="Bogdan"
-            option2="Corina"
-            value={formData.saysILoveYouFirst}
+            name="speakItalian"
+            options={q6Options}
+            value={formData.speakItalian}
+            onChange={handleChange}
+          />
+
+          <PollQuestion
+            question={t("predictions.q7")}
+            name="firstKiss"
+            options={q7Options}
+            value={formData.firstKiss}
+            onChange={handleChange}
+          />
+
+          <TextQuestion
+            question={t("predictions.q8")}
+            name="firstDanceSong"
+            value={formData.firstDanceSong}
+            placeholder={t("predictions.q8placeholder")}
+            onChange={handleChange}
+          />
+
+          <TextQuestion
+            question={t("predictions.q9")}
+            name="brideLate"
+            value={formData.brideLate}
+            placeholder={t("predictions.q9placeholder")}
             onChange={handleChange}
           />
 
