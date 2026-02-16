@@ -20,8 +20,6 @@ const RSVPSection = () => {
     phone: "",
     attending: "",
     numberOfGuests: "1",
-    dietaryRestrictions: "",
-    dietaryOther: "",
     essay: "",
   });
 
@@ -40,10 +38,6 @@ const RSVPSection = () => {
       params.append('phone', formData.phone);
       params.append('attending', formData.attending);
       params.append('numberOfGuests', formData.numberOfGuests);
-      const dietary = formData.dietaryRestrictions === 'other'
-        ? `Other: ${formData.dietaryOther}`
-        : formData.dietaryRestrictions;
-      params.append('dietaryRestrictions', dietary || '');
       params.append('essay', formData.essay || '');
       params.append('timestamp', timestamp);
 
@@ -65,8 +59,6 @@ const RSVPSection = () => {
         phone: "",
         attending: "",
         numberOfGuests: "1",
-        dietaryRestrictions: "",
-        dietaryOther: "",
         essay: "",
       });
     } catch (error) {
@@ -223,39 +215,6 @@ const RSVPSection = () => {
                 </select>
               </div>
 
-              <div>
-                <label
-                  htmlFor="dietaryRestrictions"
-                  className="block text-sm uppercase tracking-widest text-primary mb-2 font-sans font-semibold"
-                >
-                  {t("rsvp.dietaryRestrictions")} {t("rsvp.optional")}
-                </label>
-                <select
-                  id="dietaryRestrictions"
-                  name="dietaryRestrictions"
-                  value={formData.dietaryRestrictions}
-                  onChange={handleChange}
-                  className="w-full px-4 py-3 bg-white border border-gray-300 focus:border-primary focus:outline-none transition-colors font-sans text-foreground"
-                >
-                  <option value="">{t("rsvp.dietaryNone")}</option>
-                  <option value="vegetarian">{t("rsvp.dietaryVegetarian")}</option>
-                  <option value="vegan">{t("rsvp.dietaryVegan")}</option>
-                  <option value="gluten-free">{t("rsvp.dietaryGlutenFree")}</option>
-                  <option value="lactose-intolerant">{t("rsvp.dietaryLactoseIntolerant")}</option>
-                  <option value="other">{t("rsvp.dietaryOther")}</option>
-                </select>
-                {formData.dietaryRestrictions === "other" && (
-                  <input
-                    type="text"
-                    id="dietaryOther"
-                    name="dietaryOther"
-                    value={formData.dietaryOther}
-                    onChange={handleChange}
-                    placeholder={t("rsvp.dietaryPlaceholder")}
-                    className="w-full mt-3 px-4 py-3 bg-white border border-gray-300 focus:border-primary focus:outline-none transition-colors font-sans text-foreground"
-                  />
-                )}
-              </div>
             </>
           )}
 
