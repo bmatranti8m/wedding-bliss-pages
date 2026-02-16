@@ -30,7 +30,7 @@ const SongRequestsSection = ({ guestName }: SongRequestsSectionProps) => {
     setIsSubmitting(true);
 
     try {
-      const timestamp = new Date().toISOString();
+      const timestamp = new Date().toLocaleDateString('ro-RO');
       const params = new URLSearchParams();
       params.append('guestName', guestName);
       params.append('songTitle', formData.songTitle);
