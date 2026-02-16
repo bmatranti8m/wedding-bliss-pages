@@ -181,7 +181,7 @@ export const translations: Record<string, { en: string; ro: string }> = {
     ro: "Navighează",
   },
   "details.venueAlt": {
-    en: "Vineyard Estate Venue",
+    en: "Seaside Estate Venue",
     ro: "Locația Grand Hotel Villa Parisi",
   },
   "details.ceremony.title": {
@@ -193,8 +193,8 @@ export const translations: Record<string, { en: string; ro: string }> = {
     ro: "17:00",
   },
   "details.ceremony.desc": {
-    en: "Join us as we exchange our vows in an intimate outdoor ceremony surrounded by olive groves.",
-    ro: "Alăturați-vă nouă în timp ce ne rostim jurămintele într-o ceremonie intimă în aer liber, înconjurați de livezi de măslini.",
+    en: "Join us as we exchange our vows in an intimate outdoor ceremony with the sound of the sea.",
+    ro: "Alăturați-vă nouă în timp ce ne rostim jurămintele într-o ceremonie intimă în aer liber, cu sunetul mării.",
   },
   "details.cocktail.title": {
     en: "Cocktail Hour",
@@ -205,8 +205,8 @@ export const translations: Record<string, { en: string; ro: string }> = {
     ro: "17:30",
   },
   "details.cocktail.desc": {
-    en: "Enjoy craft cocktails and hors d'oeuvres while overlooking the stunning Tuscan hills.",
-    ro: "Savurați cocktailuri artizanale și aperitive în timp ce admirați dealurile superbe ale Toscanei.",
+    en: "Enjoy craft cocktails and hors d'oeuvres while overlooking the stunning Mediterranean coastline.",
+    ro: "Savurați cocktailuri artizanale și aperitive în timp ce admirați coasta superbă a Mediteranei.",
   },
   "details.reception.title": {
     en: "Reception & Dinner",
@@ -657,8 +657,8 @@ export const translations: Record<string, { en: string; ro: string }> = {
     ro: "Cum ajungi",
   },
   "travel.subtitle": {
-    en: "Everything you need to know for your trip to Tuscany",
-    ro: "Tot ce trebuie să știi pentru călătoria ta în Toscana",
+    en: "Everything you need to know for your trip to the Italian coast",
+    ro: "Tot ce trebuie să știi pentru călătoria ta pe coasta italiană",
   },
   "travel.airport.title": {
     en: "Nearest Airports",
@@ -673,8 +673,8 @@ export const translations: Record<string, { en: string; ro: string }> = {
     ro: "Transport",
   },
   "travel.transport.desc": {
-    en: "We recommend renting a car to explore Tuscany. The venue is also accessible by train to Castiglioncello station.",
-    ro: "Recomandăm închirierea unei mașini pentru a explora Toscana. Locația este accesibilă și cu trenul, stația Castiglioncello.",
+    en: "We recommend renting a car to explore the coast. The venue is also accessible by train to Castiglioncello station.",
+    ro: "Recomandăm închirierea unei mașini pentru a explora coasta. Locația este accesibilă și cu trenul, stația Castiglioncello.",
   },
   "travel.stay.title": {
     en: "Where to Stay",
@@ -689,8 +689,8 @@ export const translations: Record<string, { en: string; ro: string }> = {
     ro: "Sfaturi utile",
   },
   "travel.tip.desc": {
-    en: "June in Tuscany is warm (25-30°C). Bring sunscreen, comfortable shoes, and your dancing spirit!",
-    ro: "Iunie în Toscana este cald (25-30°C). Aduceți cremă de soare, pantofi comozi și spiritul de dans!",
+    en: "June on the Italian coast is warm (25-30°C). Bring sunscreen, comfortable shoes, and your dancing spirit!",
+    ro: "Iunie pe coasta italiană este cald (25-30°C). Aduceți cremă de soare, pantofi comozi și spiritul de dans!",
   },
 
   // ==================== DressCode ====================
@@ -703,8 +703,8 @@ export const translations: Record<string, { en: string; ro: string }> = {
     ro: "Smart Elegant",
   },
   "details.dressCodeDesc": {
-    en: "Think cocktail attire with a touch of Italian flair. Light fabrics and soft colors are perfect for a Tuscan summer evening.",
-    ro: "Gândește-te la o ținută de cocktail cu o notă de eleganță italiană. Țesăturile ușoare și culorile moi sunt perfecte pentru o seară de vară toscană.",
+    en: "Think cocktail attire with a touch of Italian flair. Light fabrics and soft colors are perfect for a seaside summer evening.",
+    ro: "Gândește-te la o ținută de cocktail cu o notă de eleganță italiană. Țesăturile ușoare și culorile moi sunt perfecte pentru o seară de vară la malul mării.",
   },
 
   // ==================== RSVP Extra Fields ====================

@@ -12,7 +12,7 @@ DTSTART:20260616T170000
 DTEND:20260617T010000
 SUMMARY:Bogdan & Corina Wedding
 LOCATION:Grand Hotel Villa Parisi, Via Romolo Monti 10, Castiglioncello, Italy
-DESCRIPTION:Join us for our wedding celebration in Tuscany!
+DESCRIPTION:Join us for our wedding celebration by the sea in Castiglioncello!
 END:VEVENT
 END:VCALENDAR`;
   const blob = new Blob([ics], { type: "text/calendar;charset=utf-8" });
