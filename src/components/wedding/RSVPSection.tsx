@@ -37,7 +37,7 @@ const RSVPSection = () => {
       params.append('email', formData.email);
       params.append('phone', formData.phone);
       params.append('attending', formData.attending);
-      params.append('numberOfGuests', formData.numberOfGuests);
+      params.append('numberOfGuests', formData.attending === 'yes' ? formData.numberOfGuests : '0');
       params.append('essay', formData.essay || '');
       params.append('timestamp', timestamp);
 
