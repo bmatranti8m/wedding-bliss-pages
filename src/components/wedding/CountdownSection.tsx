@@ -7,7 +7,8 @@ const CountdownSection = () => {
   const isInView = useInView(ref, { once: true, margin: "-100px" });
   const { t } = useTranslation();
 
-  const weddingDate = new Date(2026, 5, 16, 17, 0, 0);
+  // June 16, 2026 at 5:00 PM Italy time (CEST = UTC+2)
+  const weddingDate = new Date("2026-06-16T15:00:00Z");
 
   const [timeLeft, setTimeLeft] = useState({
     days: 0,
