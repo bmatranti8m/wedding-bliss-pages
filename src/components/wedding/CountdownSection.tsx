@@ -7,8 +7,8 @@ const CountdownSection = () => {
   const isInView = useInView(ref, { once: true, margin: "-100px" });
   const { t } = useTranslation();
 
-  // June 16, 2026 at 5:00 PM Italy time (CEST = UTC+2)
-  const weddingDate = new Date("2026-06-16T15:00:00Z");
+  // June 16, 2026 at 5:00 PM (wall-clock time, DST-independent)
+  const weddingUTC = Date.UTC(2026, 5, 16, 17, 0, 0);
 
   const [timeLeft, setTimeLeft] = useState({
     days: 0,
@@ -20,7 +20,8 @@ const CountdownSection = () => {
   useEffect(() => {
     const calculateTimeLeft = () => {
       const now = new Date();
-      const difference = weddingDate.getTime() - now.getTime();
+      const nowUTC = Date.UTC(now.getFullYear(), now.getMonth(), now.getDate(), now.getHours(), now.getMinutes(), now.getSeconds());
+      const difference = weddingUTC - nowUTC;
 
       if (difference > 0) {
         setTimeLeft({
@@ -39,7 +40,9 @@ const CountdownSection = () => {
     return () => clearInterval(timer);
   }, []);
 
-  const isZero = timeLeft.days === 0 && timeLeft.hours === 0 && timeLeft.minutes === 0 && timeLeft.seconds === 0 && new Date() >= weddingDate;
+  const now = new Date();
+  const nowUTC = Date.UTC(now.getFullYear(), now.getMonth(), now.getDate(), now.getHours(), now.getMinutes(), now.getSeconds());
+  const isZero = timeLeft.days === 0 && timeLeft.hours === 0 && timeLeft.minutes === 0 && timeLeft.seconds === 0 && nowUTC >= weddingUTC;
 
   const confettiPieces = useMemo(() =>
     Array.from({ length: 50 }, (_, i) => ({
