@@ -265,12 +265,20 @@ const RSVPSection = () => {
             <p className="text-muted-foreground font-light mb-6">
               {t("rsvp.wantMoreDesc")}
             </p>
-            <Link
-              to="/interactive"
-              className="inline-block px-8 py-3 bg-secondary text-secondary-foreground font-sans text-sm tracking-widest uppercase hover:bg-secondary/90 transition-colors duration-300 shadow-md"
-            >
-              {t("rsvp.funInteractive")}
-            </Link>
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+              <Link
+                to="/interactive"
+                className="inline-block px-8 py-3 bg-secondary text-secondary-foreground font-sans text-sm tracking-widest uppercase hover:bg-secondary/90 transition-colors duration-300 shadow-md"
+              >
+                {t("rsvp.funInteractive")}
+              </Link>
+              <Link
+                to="/upload"
+                className="inline-block px-8 py-3 bg-primary text-primary-foreground font-sans text-sm tracking-widest uppercase hover:bg-primary/90 transition-colors duration-300 shadow-md"
+              >
+                {t("photos.sharePhotos")}
+              </Link>
+            </div>
           </div>
         </motion.div>
       </div>

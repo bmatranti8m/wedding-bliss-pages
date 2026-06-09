@@ -632,6 +632,88 @@ export const translations: Record<string, { en: string; ro: string }> = {
   },
 
   // ==================== Shared ====================
+  // ==================== PhotoUploadSection ====================
+  "photos.title": {
+    en: "Share Your Photos",
+    ro: "Împărtășește pozele tale",
+  },
+  "photos.subtitle": {
+    en: "Captured a moment from our celebration? Upload your photos so we can relive the day through your eyes.",
+    ro: "Ai surprins un moment din sărbătoarea noastră? Încarcă pozele tale ca să retrăim ziua prin ochii tăi.",
+  },
+  "photos.sharePhotos": {
+    en: "Share Your Photos",
+    ro: "Împărtășește pozele",
+  },
+  "photos.yourName": {
+    en: "Your Name (optional)",
+    ro: "Numele tău (opțional)",
+  },
+  "photos.namePlaceholder": {
+    en: "So we know who to thank",
+    ro: "Ca să știm cui să-i mulțumim",
+  },
+  "photos.selectPhotos": {
+    en: "Tap to choose photos",
+    ro: "Apasă pentru a alege poze",
+  },
+  "photos.maxFilesHint": {
+    en: "Up to {max} photos at a time",
+    ro: "Până la {max} poze odată",
+  },
+  "photos.uploadButton": {
+    en: "Upload Photos",
+    ro: "Încarcă pozele",
+  },
+  "photos.uploadingProgress": {
+    en: "Uploading {current} of {total}…",
+    ro: "Se încarcă {current} din {total}…",
+  },
+  "photos.removeAria": {
+    en: "Remove photo",
+    ro: "Elimină poza",
+  },
+  "photos.retry": {
+    en: "Retry",
+    ro: "Reîncearcă",
+  },
+  "photos.successTitle": {
+    en: "Thank you!",
+    ro: "Mulțumim!",
+  },
+  "photos.successDesc": {
+    en: "{count} photo(s) uploaded. We can't wait to see them!",
+    ro: "{count} poză(e) încărcate. Abia așteptăm să le vedem!",
+  },
+  "photos.uploadedUnconfirmed": {
+    en: "Your photos were sent. If any are missing, feel free to upload again.",
+    ro: "Pozele tale au fost trimise. Dacă lipsește vreuna, încarc-o din nou.",
+  },
+  "photos.partialSuccess": {
+    en: "Almost there",
+    ro: "Aproape gata",
+  },
+  "photos.partialDesc": {
+    en: "{ok} uploaded, {failed} failed. Tap the failed photos to retry.",
+    ro: "{ok} încărcate, {failed} eșuate. Apasă pozele eșuate pentru a reîncerca.",
+  },
+  "photos.heicWarning": {
+    en: "Some HEIC photos were skipped. On iPhone, set Camera → Formats → 'Most Compatible', or share as JPEG.",
+    ro: "Unele poze HEIC au fost omise. Pe iPhone, setează Cameră → Formate → 'Cea mai compatibilă', sau trimite ca JPEG.",
+  },
+  "photos.invalidType": {
+    en: "Only image files can be uploaded.",
+    ro: "Pot fi încărcate doar fișiere imagine.",
+  },
+  "photos.fileTooLarge": {
+    en: "Some photos were too large and were skipped.",
+    ro: "Unele poze au fost prea mari și au fost omise.",
+  },
+  "photos.tooManyFiles": {
+    en: "You can upload up to {max} photos at a time.",
+    ro: "Poți încărca până la {max} poze odată.",
+  },
+
   "shared.submissionFailed": {
     en: "Submission Failed",
     ro: "Trimiterea a eșuat",

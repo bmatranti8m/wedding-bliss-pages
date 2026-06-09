@@ -9,6 +9,7 @@ import { LanguageProvider } from "./i18n/LanguageContext";
 import LanguageToggle from "./components/LanguageToggle";
 import Index from "./pages/Index";
 import Interactive from "./pages/Interactive";
+import Upload from "./pages/Upload";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -31,6 +32,7 @@ const App = () => (
             <Routes>
               <Route path="/" element={<Index />} />
               <Route path="/interactive" element={<Interactive />} />
+              <Route path="/upload" element={<Upload />} />
               {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
               <Route path="*" element={<NotFound />} />
             </Routes>
