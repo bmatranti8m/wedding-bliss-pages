@@ -1,12 +1,14 @@
 import { motion, useInView } from "framer-motion";
 import { useRef, useState, useEffect } from "react";
-import { Loader2, Check, AlertCircle, X, ImagePlus, Upload as UploadIcon } from "lucide-react";
+import { Loader2, Check, AlertCircle, X, ImagePlus, Film, Upload as UploadIcon } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import { useTranslation } from "@/i18n/LanguageContext";
 import {
   resizeImage,
   uploadPhoto,
+  uploadVideo,
   isHeic,
+  isVideo,
   MAX_FILES,
   MAX_INPUT_BYTES,
 } from "@/lib/photoUpload";
@@ -17,7 +19,9 @@ interface SelectedPhoto {
   id: string;
   file: File;
   previewUrl: string;
+  isVideo: boolean;
   status: PhotoStatus;
+  uploadProgress?: number; // 0–1, byte progress while a video is uploading
   error?: string;
 }
 
@@ -75,15 +79,18 @@ const PhotoUploadSection = () => {
           });
           break;
         }
+        const video = isVideo(file);
         if (isHeic(file)) {
           rejectedHeic = true;
           continue;
         }
-        if (!file.type.startsWith("image/")) {
+        if (!video && !file.type.startsWith("image/")) {
           rejectedType = true;
           continue;
         }
-        if (file.size > MAX_INPUT_BYTES) {
+        // Videos stream straight to Drive, so they have no size cap. Images
+        // are decoded into a canvas in the browser, so keep their guard.
+        if (!video && file.size > MAX_INPUT_BYTES) {
           rejectedSize = true;
           continue;
         }
@@ -94,6 +101,7 @@ const PhotoUploadSection = () => {
           id: `${key}:${next.length}`,
           file,
           previewUrl: URL.createObjectURL(file),
+          isVideo: video,
           status: "pending",
         });
       }
@@ -116,14 +124,27 @@ const PhotoUploadSection = () => {
 
   const uploadOne = async (photo: SelectedPhoto) => {
     try {
-      update(photo.id, { status: "resizing", error: undefined });
-      const blob = await resizeImage(photo.file);
-      update(photo.id, { status: "uploading" });
-      const result = await uploadPhoto({
-        blob,
-        filename: photo.file.name,
-        uploaderName,
-      });
+      let result;
+      if (photo.isVideo) {
+        // Videos stream straight to Drive via a resumable session.
+        update(photo.id, { status: "uploading", uploadProgress: 0, error: undefined });
+        result = await uploadVideo({
+          file: photo.file,
+          uploaderName,
+          onProgress: (fraction) => update(photo.id, { uploadProgress: fraction }),
+        });
+      } else {
+        // Images are resized/re-encoded, then sent base64 to the script.
+        update(photo.id, { status: "resizing", error: undefined });
+        const blob = await resizeImage(photo.file);
+        update(photo.id, { status: "uploading" });
+        result = await uploadPhoto({
+          blob,
+          filename: photo.file.name,
+          mimeType: "image/jpeg",
+          uploaderName,
+        });
+      }
       if (result.ok) {
         update(photo.id, { status: "done" });
         return result.unconfirmed ? "unconfirmed" : "ok";
@@ -231,7 +252,7 @@ const PhotoUploadSection = () => {
           <input
             ref={inputRef}
             type="file"
-            accept="image/*"
+            accept="image/*,video/*"
             multiple
             onChange={handleSelect}
             className="hidden"
@@ -259,14 +280,36 @@ const PhotoUploadSection = () => {
                   key={photo.id}
                   className="relative aspect-square rounded-md overflow-hidden bg-gray-100 group"
                 >
-                  <img
-                    src={photo.previewUrl}
-                    alt=""
-                    className="w-full h-full object-cover"
-                  />
+                  {photo.isVideo ? (
+                    <video
+                      src={photo.previewUrl}
+                      className="w-full h-full object-cover"
+                      muted
+                      playsInline
+                      preload="metadata"
+                    />
+                  ) : (
+                    <img
+                      src={photo.previewUrl}
+                      alt=""
+                      className="w-full h-full object-cover"
+                    />
+                  )}
+                  {photo.isVideo && (
+                    <div className="absolute bottom-1 left-1 w-5 h-5 rounded-full bg-black/60 text-white flex items-center justify-center pointer-events-none">
+                      <Film className="w-3 h-3" />
+                    </div>
+                  )}
                   {(photo.status === "resizing" || photo.status === "uploading") && (
-                    <div className="absolute inset-0 bg-black/40 flex items-center justify-center">
+                    <div className="absolute inset-0 bg-black/40 flex flex-col items-center justify-center gap-1">
                       <Loader2 className="w-6 h-6 text-white animate-spin" />
+                      {photo.isVideo &&
+                        photo.status === "uploading" &&
+                        photo.uploadProgress !== undefined && (
+                          <span className="text-[11px] font-sans text-white tabular-nums">
+                            {Math.round(photo.uploadProgress * 100)}%
+                          </span>
+                        )}
                     </div>
                   )}
                   {photo.status === "done" && (

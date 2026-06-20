@@ -9,7 +9,10 @@ export const PHOTO_UPLOAD_URL = "https://script.google.com/macros/s/AKfycbwnQnUg
 export const UPLOAD_SECRET = "c7ae3b010057fb84407c3d79"; // must match SECRET in photo-upload.gs (or "" to disable)
 
 export const MAX_FILES = 20;
-export const MAX_INPUT_BYTES = 25 * 1024 * 1024; // reject originals larger than 25 MB
+export const MAX_INPUT_BYTES = 25 * 1024 * 1024; // reject original images larger than 25 MB
+// Videos have no size cap: instead of squeezing them through the Apps Script
+// POST body (limited to ~50 MB), the script mints a Google Drive resumable
+// upload session and the browser streams the file straight to Drive.
 export const MAX_EDGE = 2560; // longest edge after resize (px)
 export const JPEG_QUALITY = 0.82;
 
@@ -23,6 +26,14 @@ export interface UploadResult {
 export function isHeic(file: File): boolean {
   return (
     /image\/hei[cf]/i.test(file.type) || /\.(heic|heif)$/i.test(file.name)
+  );
+}
+
+/** True for video files, which we upload as-is (no resize/re-encode). */
+export function isVideo(file: File): boolean {
+  return (
+    /^video\//i.test(file.type) ||
+    /\.(mp4|mov|m4v|webm|ogg|3gp|avi|mkv)$/i.test(file.name)
   );
 }
 
@@ -108,15 +119,16 @@ export async function resizeImage(file: File): Promise<Blob> {
 interface UploadArgs {
   blob: Blob;
   filename: string;
+  mimeType: string;
   uploaderName: string;
 }
 
-async function postOnce({ blob, filename, uploaderName }: UploadArgs): Promise<UploadResult> {
+async function postOnce({ blob, filename, mimeType, uploaderName }: UploadArgs): Promise<UploadResult> {
   const data = await blobToBase64(blob);
   const params = new URLSearchParams();
   params.append("data", data);
   params.append("filename", filename);
-  params.append("mimeType", "image/jpeg");
+  params.append("mimeType", mimeType);
   params.append("uploaderName", uploaderName || "guest");
   params.append("timestamp", new Date().toLocaleString("ro-RO"));
   if (UPLOAD_SECRET) params.append("secret", UPLOAD_SECRET);
@@ -153,4 +165,86 @@ export async function uploadPhoto(args: UploadArgs): Promise<UploadResult> {
     }
   }
   return { ok: false, error: "Upload failed" };
+}
+
+// ---------------------------------------------------------------------------
+// Video upload — resumable, straight to Google Drive (no size limit).
+//
+// Step 1: ask the Apps Script (secret-protected) to open a Drive resumable
+//   upload session for this file. The script does this server-side with the
+//   couple's credentials and returns only the one-time session URL — no token
+//   is ever exposed to the browser.
+// Step 2: the browser streams the raw file bytes to that session URL. The
+//   upload_id embedded in the URL is the capability, so the PUT needs no auth
+//   header and isn't bound by the Apps Script POST-body size limit.
+// ---------------------------------------------------------------------------
+
+interface VideoUploadArgs {
+  file: File;
+  uploaderName: string;
+  onProgress?: (fraction: number) => void;
+}
+
+async function startVideoSession(file: File, uploaderName: string): Promise<string> {
+  const params = new URLSearchParams();
+  params.append("action", "video-init");
+  params.append("filename", file.name);
+  params.append("mimeType", file.type || "video/mp4");
+  params.append("uploaderName", uploaderName || "guest");
+  params.append("timestamp", new Date().toLocaleString("ro-RO"));
+  // The Drive upload session only allows cross-origin PUTs from the origin it
+  // was opened for, so tell the script which origin will stream the bytes.
+  params.append("origin", window.location.origin);
+  if (UPLOAD_SECRET) params.append("secret", UPLOAD_SECRET);
+
+  const res = await fetch(PHOTO_UPLOAD_URL, {
+    method: "POST",
+    headers: { "Content-Type": "application/x-www-form-urlencoded" },
+    body: params.toString(),
+    redirect: "follow",
+  });
+  const json = (await res.json()) as { ok: boolean; uploadUrl?: string; error?: string };
+  if (!json.ok || !json.uploadUrl) {
+    throw new Error(json.error || "Could not start the video upload.");
+  }
+  return json.uploadUrl;
+}
+
+/** PUT the whole file to the resumable session URL, reporting byte progress. */
+function putToSession(
+  uploadUrl: string,
+  file: File,
+  onProgress?: (fraction: number) => void
+): Promise<void> {
+  return new Promise((resolve, reject) => {
+    const xhr = new XMLHttpRequest();
+    xhr.open("PUT", uploadUrl, true);
+    xhr.setRequestHeader("Content-Type", file.type || "video/mp4");
+    // A single PUT covering the whole file completes the resumable session.
+    xhr.setRequestHeader("Content-Range", `bytes 0-${file.size - 1}/${file.size}`);
+    xhr.upload.onprogress = (e) => {
+      if (e.lengthComputable) onProgress?.(e.loaded / e.total);
+    };
+    xhr.onload = () => {
+      if (xhr.status >= 200 && xhr.status < 300) {
+        onProgress?.(1);
+        resolve();
+      } else {
+        reject(new Error(`Upload failed (HTTP ${xhr.status}).`));
+      }
+    };
+    xhr.onerror = () => reject(new Error("Network error during upload."));
+    xhr.onabort = () => reject(new Error("Upload was cancelled."));
+    xhr.send(file);
+  });
+}
+
+export async function uploadVideo({ file, uploaderName, onProgress }: VideoUploadArgs): Promise<UploadResult> {
+  try {
+    const uploadUrl = await startVideoSession(file, uploaderName);
+    await putToSession(uploadUrl, file, onProgress);
+    return { ok: true };
+  } catch (err) {
+    return { ok: false, error: err instanceof Error ? err.message : String(err) };
+  }
 }

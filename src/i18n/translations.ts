@@ -638,8 +638,8 @@ export const translations: Record<string, { en: string; ro: string }> = {
     ro: "Împărtășește pozele tale",
   },
   "photos.subtitle": {
-    en: "Captured a moment from our celebration? Upload your photos so we can relive the day through your eyes.",
-    ro: "Ai surprins un moment din sărbătoarea noastră? Încarcă pozele tale ca să retrăim ziua prin ochii tăi.",
+    en: "Captured a moment from our celebration? Upload your photos and videos so we can relive the day through your eyes.",
+    ro: "Ai surprins un moment din sărbătoarea noastră? Încarcă pozele și clipurile tale ca să retrăim ziua prin ochii tăi.",
   },
   "photos.sharePhotos": {
     en: "Share Your Photos",
@@ -654,12 +654,12 @@ export const translations: Record<string, { en: string; ro: string }> = {
     ro: "Ca să știm cui să-i mulțumim",
   },
   "photos.selectPhotos": {
-    en: "Tap to choose photos",
-    ro: "Apasă pentru a alege poze",
+    en: "Tap to choose photos or videos",
+    ro: "Apasă pentru a alege poze sau clipuri",
   },
   "photos.maxFilesHint": {
-    en: "Up to {max} photos at a time",
-    ro: "Până la {max} poze odată",
+    en: "Up to {max} files at a time",
+    ro: "Până la {max} fișiere odată",
   },
   "photos.uploadButton": {
     en: "Upload Photos",
@@ -702,8 +702,8 @@ export const translations: Record<string, { en: string; ro: string }> = {
     ro: "Unele poze HEIC au fost omise. Pe iPhone, setează Cameră → Formate → 'Cea mai compatibilă', sau trimite ca JPEG.",
   },
   "photos.invalidType": {
-    en: "Only image files can be uploaded.",
-    ro: "Pot fi încărcate doar fișiere imagine.",
+    en: "Only photos and videos can be uploaded.",
+    ro: "Pot fi încărcate doar poze și clipuri video.",
   },
   "photos.fileTooLarge": {
     en: "Some photos were too large and were skipped.",
